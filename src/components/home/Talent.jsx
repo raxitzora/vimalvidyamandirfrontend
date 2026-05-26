@@ -370,7 +370,7 @@ export default function Talent() {
             >
               <img
                 src="/images/talent-main.jpg"
-                alt=""
+                alt="talent.jpg"
                 className="
                   h-[420px]
                   w-full
@@ -470,7 +470,7 @@ export default function Talent() {
             >
               <img
                 src="/images/talent-side.jpg"
-                alt=""
+                alt="talent-side.jpg"
                 className="
                   h-[240px]
                   w-full
@@ -518,7 +518,7 @@ export default function Talent() {
             >
               <img
                 src="/images/talent-1.jpg"
-                alt=""
+                alt="talent-1.jpg"
                 className="
                   h-[460px]
                   w-full
