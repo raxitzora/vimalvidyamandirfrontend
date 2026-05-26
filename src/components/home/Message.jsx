@@ -26,9 +26,9 @@ export default function Message() {
       className="
         relative
         overflow-hidden
-        bg-gradient-to-b
-        from-[#F1F5F9]
-        to-[#F8F6F1]
+
+        bg-[#0F172A]
+
         pt-24
         pb-28
 
@@ -36,50 +36,51 @@ export default function Message() {
         sm:pb-36
       "
     >
-      {/* BACKGROUND GLOWS */}
+      {/* ATMOSPHERIC BACKGROUND */}
       <div
         className="
-          pointer-events-none
           absolute
           inset-0
-          overflow-hidden
-        "
-      >
-        <div
-          className="
-            absolute
-            top-[-120px]
-            left-[-120px]
-            h-[320px]
-            w-[320px]
-            rounded-full
-            bg-[#DBEAFE]
-            opacity-40
-            blur-3xl
-          "
-        />
 
-        <div
-          className="
-            absolute
-            bottom-[-120px]
-            right-[-120px]
-            h-[280px]
-            w-[280px]
-            rounded-full
-            bg-[#FEF3C7]
-            opacity-40
-            blur-3xl
-          "
-        />
-      </div>
+          bg-[radial-gradient(circle_at_top_left,rgba(198,165,106,0.12),transparent_30%)]
+        "
+      />
+
+      <div
+        className="
+          absolute
+          inset-0
+
+          bg-[linear-gradient(to_bottom,rgba(15,23,42,0.2),transparent,rgba(15,23,42,0.55))]
+        "
+      />
+
+      {/* GLOW */}
+      <div
+        className="
+          absolute
+          right-[-120px]
+          top-[-120px]
+
+          h-[380px]
+          w-[380px]
+
+          rounded-full
+
+          bg-[#C6A56A]/10
+
+          blur-3xl
+        "
+      />
 
       <div
         className="
           relative
           z-10
+
           mx-auto
           max-w-7xl
+
           px-5
 
           sm:px-8
@@ -87,22 +88,20 @@ export default function Message() {
           lg:px-12
         "
       >
-        {/* ===================================== */}
         {/* TRUSTEE SECTION */}
-        {/* ===================================== */}
-
         <div
           className="
             grid
             items-center
-            gap-14
+
+            gap-16
 
             xl:grid-cols-[0.92fr_1fr]
 
-            lg:gap-20
+            lg:gap-24
           "
         >
-          {/* IMAGE SIDE */}
+          {/* IMAGE */}
           <motion.div
             initial={{
               opacity: 0,
@@ -116,7 +115,7 @@ export default function Message() {
               once: true,
             }}
             transition={{
-              duration: 0.8,
+              duration: 0.9,
             }}
             className="relative"
           >
@@ -125,8 +124,10 @@ export default function Message() {
               className="
                 relative
                 overflow-hidden
-                rounded-[36px]
-                shadow-[0_20px_60px_rgba(15,23,42,0.08)]
+
+                rounded-[40px]
+
+                shadow-[0_30px_80px_rgba(0,0,0,0.35)]
               "
             >
               <img
@@ -137,18 +138,19 @@ export default function Message() {
                   w-full
                   object-cover
 
-                  sm:h-[560px]
+                  sm:h-[580px]
                 "
               />
 
-              {/* SOFT OVERLAY */}
+              {/* OVERLAY */}
               <div
                 className="
                   absolute
                   inset-0
+
                   bg-gradient-to-t
-                  from-[#0F172A]/20
-                  via-transparent
+                  from-[#020617]/75
+                  via-[#020617]/10
                   to-transparent
                 "
               />
@@ -157,14 +159,21 @@ export default function Message() {
               <div
                 className="
                   absolute
+
                   bottom-5
                   left-5
                   right-5
 
-                  rounded-3xl
-                  bg-white/80
+                  rounded-[28px]
+
+                  border
+                  border-white/10
+
+                  bg-[#020617]/45
+
                   p-5
-                  backdrop-blur-md
+
+                  backdrop-blur-xl
 
                   sm:bottom-6
                   sm:left-6
@@ -175,17 +184,18 @@ export default function Message() {
                   className="
                     text-sm
                     leading-7
-                    text-[#334155]
-                    font-medium
+
+                    text-slate-100
 
                     sm:text-[15px]
                   "
                 >
                   “Every child deserves a
                   caring environment where
-                  they feel encouraged,
-                  respected, inspired, and
-                  confident to grow.”
+                  they feel inspired,
+                  respected, supported, and
+                  encouraged to grow with
+                  confidence.”
                 </p>
               </div>
             </div>
@@ -193,28 +203,32 @@ export default function Message() {
             {/* FLOATING STAT */}
             <motion.div
               animate={{
-                y: [0, -8, 0],
+                y: [0, -10, 0],
               }}
               transition={{
                 repeat: Infinity,
-                duration: 5,
+                duration: 6,
               }}
               className="
-                hidden
-
-                lg:block
-
                 absolute
                 -right-10
                 top-10
 
-                rounded-3xl
+                hidden
+                lg:block
+
+                rounded-[28px]
+
                 border
-                border-[#ECE7DE]
-                bg-white/90
-                p-5
-                backdrop-blur-md
-                shadow-[0_20px_50px_rgba(15,23,42,0.05)]
+                border-white/10
+
+                bg-white/[0.05]
+
+                p-6
+
+                backdrop-blur-xl
+
+                shadow-[0_20px_60px_rgba(0,0,0,0.25)]
               "
             >
               <p
@@ -222,7 +236,8 @@ export default function Message() {
                   text-[11px]
                   uppercase
                   tracking-[0.2em]
-                  text-[#94A3B8]
+
+                  text-slate-400
                   font-semibold
                 "
               >
@@ -232,9 +247,11 @@ export default function Message() {
               <h3
                 className="
                   mt-3
-                  text-4xl
+
+                  text-5xl
                   font-semibold
-                  text-[#0F172A]
+
+                  text-white
                 "
               >
                 15+
@@ -242,21 +259,25 @@ export default function Message() {
 
               <p
                 className="
-                  mt-2
-                  max-w-[170px]
+                  mt-3
+
+                  max-w-[180px]
+
                   text-sm
                   leading-6
-                  text-[#64748B]
+
+                  text-slate-300
                 "
               >
                 Years dedicated to
                 nurturing children through
-                education and values.
+                values, learning, and
+                meaningful education.
               </p>
             </motion.div>
           </motion.div>
 
-          {/* CONTENT SIDE */}
+          {/* CONTENT */}
           <motion.div
             initial={{
               opacity: 0,
@@ -281,18 +302,22 @@ export default function Message() {
                 gap-2
 
                 rounded-full
+
                 border
-                border-[#E7E2D8]
-                bg-white/80
+                border-white/10
+
+                bg-white/[0.05]
+
                 px-4
                 py-2
+
                 backdrop-blur-md
               "
             >
               <HeartHandshake
                 size={15}
                 className="
-                  text-[#C59D5F]
+                  text-[#C6A56A]
                 "
               />
 
@@ -301,7 +326,8 @@ export default function Message() {
                   text-[11px]
                   uppercase
                   tracking-[0.2em]
-                  text-[#64748B]
+
+                  text-slate-300
                   font-medium
                 "
               >
@@ -309,15 +335,17 @@ export default function Message() {
               </span>
             </div>
 
-            {/* HEADING */}
+            {/* TITLE */}
             <h2
               className="
                 mt-7
+
                 text-[2.8rem]
-                font-semibold
-                leading-[0.98]
+                leading-[0.96]
                 tracking-tight
-                text-[#0F172A]
+
+                text-white
+                font-semibold
 
                 sm:text-[4rem]
 
@@ -325,7 +353,7 @@ export default function Message() {
               "
             >
               A School
-              Rooted In
+              Built On
               Care, Values
               & Meaningful
               Education
@@ -335,10 +363,13 @@ export default function Message() {
             <p
               className="
                 mt-7
+
                 max-w-xl
+
                 text-[17px]
                 leading-8
-                text-[#475569]
+
+                text-slate-300
 
                 sm:text-[18px]
               "
@@ -346,29 +377,32 @@ export default function Message() {
               At Shree Vimal Vidya
               Mandir, we believe
               education should help
-              children become
-              confident, disciplined,
-              compassionate, and
-              future-ready individuals.
+              children become confident,
+              compassionate, disciplined,
+              and future-ready
+              individuals.
             </p>
 
             <p
               className="
                 mt-6
+
                 max-w-xl
+
                 text-[17px]
                 leading-8
-                text-[#475569]
+
+                text-slate-300
 
                 sm:text-[18px]
               "
             >
-              Our mission is to create
-              a safe and inspiring
+              Our mission is to create a
+              safe and inspiring
               environment where every
-              child receives personal
-              attention, meaningful
-              guidance, and joyful
+              child receives meaningful
+              guidance, personal
+              attention, and joyful
               learning experiences.
             </p>
 
@@ -412,19 +446,24 @@ export default function Message() {
                         flex
                         h-11
                         w-11
+
                         items-center
                         justify-center
 
                         rounded-xl
+
                         border
-                        border-[#ECE7DE]
-                        bg-white/90
+                        border-white/10
+
+                        bg-white/[0.05]
+
+                        backdrop-blur-md
                       "
                     >
                       <ShieldCheck
                         size={18}
                         className="
-                          text-[#2563EB]
+                          text-[#E2C48D]
                         "
                       />
                     </div>
@@ -433,7 +472,8 @@ export default function Message() {
                       className="
                         text-[15px]
                         font-medium
-                        text-[#334155]
+
+                        text-slate-100
 
                         sm:text-[16px]
                       "
@@ -447,25 +487,23 @@ export default function Message() {
           </motion.div>
         </div>
 
-        {/* ===================================== */}
-        {/* AI ASSISTANT */}
-        {/* ===================================== */}
-
+        {/* AI SECTION */}
         <div
           className="
             mt-28
 
             grid
             items-center
-            gap-14
+
+            gap-16
 
             xl:grid-cols-[0.9fr_1fr]
 
             lg:mt-36
-            lg:gap-20
+            lg:gap-24
           "
         >
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <motion.div
             initial={{
               opacity: 0,
@@ -479,7 +517,7 @@ export default function Message() {
               once: true,
             }}
             transition={{
-              duration: 0.8,
+              duration: 0.9,
             }}
           >
             {/* LABEL */}
@@ -490,18 +528,22 @@ export default function Message() {
                 gap-2
 
                 rounded-full
+
                 border
-                border-[#E7E2D8]
-                bg-white/80
+                border-white/10
+
+                bg-white/[0.05]
+
                 px-4
                 py-2
+
                 backdrop-blur-md
               "
             >
               <Bot
                 size={14}
                 className="
-                  text-[#2563EB]
+                  text-[#E2C48D]
                 "
               />
 
@@ -510,7 +552,8 @@ export default function Message() {
                   text-[11px]
                   uppercase
                   tracking-[0.2em]
-                  text-[#64748B]
+
+                  text-slate-300
                   font-medium
                 "
               >
@@ -522,11 +565,13 @@ export default function Message() {
             <h2
               className="
                 mt-7
+
                 text-[2.8rem]
-                font-semibold
-                leading-[0.98]
+                leading-[0.96]
                 tracking-tight
-                text-[#0F172A]
+
+                text-white
+                font-semibold
 
                 sm:text-[4rem]
 
@@ -534,36 +579,38 @@ export default function Message() {
               "
             >
               Friendly
-              Guidance &
-              Support For
-              Parents
+              Guidance
+              For Parents
             </h2>
 
             {/* TEXT */}
             <p
               className="
                 mt-7
+
                 max-w-lg
+
                 text-[17px]
                 leading-8
-                text-[#475569]
+
+                text-slate-300
 
                 sm:text-[18px]
               "
             >
               Parents can quickly ask
-              about admissions,
-              activities, timings,
-              facilities, learning
-              environment, and school
-              information through our
-              helpful support assistant.
+              about admissions, school
+              timings, activities,
+              facilities, and educational
+              environment through our
+              helpful school assistant.
             </p>
 
             {/* QUESTIONS */}
             <div
               className="
                 mt-10
+
                 flex
                 flex-wrap
                 gap-3
@@ -578,14 +625,19 @@ export default function Message() {
                     key={index}
                     className="
                       rounded-full
+
                       border
-                      border-[#ECE7DE]
-                      bg-white/90
+                      border-white/10
+
+                      bg-white/[0.05]
+
                       px-4
                       py-2.5
+
                       text-sm
                       font-medium
-                      text-[#475569]
+
+                      text-slate-200
                     "
                   >
                     {item}
@@ -595,7 +647,7 @@ export default function Message() {
             </div>
           </motion.div>
 
-          {/* CHAT UI */}
+          {/* CHAT */}
           <motion.div
             initial={{
               opacity: 0,
@@ -612,24 +664,32 @@ export default function Message() {
               duration: 1,
             }}
             className="
-              rounded-[36px]
+              rounded-[40px]
+
               border
-              border-[#ECE7DE]
-              bg-white/90
+              border-white/10
+
+              bg-white/[0.04]
+
               p-5
-              shadow-[0_20px_60px_rgba(15,23,42,0.05)]
+
+              backdrop-blur-xl
+
+              shadow-[0_30px_80px_rgba(0,0,0,0.22)]
 
               sm:p-7
             "
           >
-            {/* TOP */}
+            {/* HEADER */}
             <div
               className="
                 flex
                 items-center
                 gap-4
+
                 border-b
-                border-[#F1ECE4]
+                border-white/10
+
                 pb-5
               "
             >
@@ -638,16 +698,18 @@ export default function Message() {
                   flex
                   h-12
                   w-12
+
                   items-center
                   justify-center
 
                   rounded-2xl
-                  bg-[#EFF6FF]
+
+                  bg-[#C6A56A]/15
                 "
               >
                 <Bot
                   className="
-                    text-[#2563EB]
+                    text-[#E2C48D]
                   "
                 />
               </div>
@@ -656,7 +718,7 @@ export default function Message() {
                 <h3
                   className="
                     font-semibold
-                    text-[#0F172A]
+                    text-white
                   "
                 >
                   School Support Assistant
@@ -666,7 +728,7 @@ export default function Message() {
                   className="
                     mt-1
                     text-sm
-                    text-[#64748B]
+                    text-slate-400
                   "
                 >
                   Helpful guidance for
@@ -675,7 +737,7 @@ export default function Message() {
               </div>
             </div>
 
-            {/* CHAT */}
+            {/* CHAT BODY */}
             <div
               className="
                 mt-6
@@ -691,13 +753,16 @@ export default function Message() {
                     rounded-[24px]
                     rounded-br-md
 
-                    bg-[#2563EB]
+                    bg-[#C6A56A]
+
                     px-5
                     py-4
 
                     text-sm
                     leading-7
-                    text-white
+
+                    text-[#0F172A]
+                    font-medium
                   "
                 >
                   What activities are
@@ -714,13 +779,15 @@ export default function Message() {
                     rounded-[24px]
                     rounded-bl-md
 
-                    bg-[#F8FAFC]
+                    bg-white/[0.05]
+
                     px-5
                     py-4
 
                     text-sm
                     leading-7
-                    text-[#475569]
+
+                    text-slate-300
                   "
                 >
                   Students participate in
@@ -742,13 +809,16 @@ export default function Message() {
                     rounded-[24px]
                     rounded-br-md
 
-                    bg-[#2563EB]
+                    bg-[#C6A56A]
+
                     px-5
                     py-4
 
                     text-sm
                     leading-7
-                    text-white
+
+                    text-[#0F172A]
+                    font-medium
                   "
                 >
                   How can I apply for
@@ -765,13 +835,15 @@ export default function Message() {
                     rounded-[24px]
                     rounded-bl-md
 
-                    bg-[#F8FAFC]
+                    bg-white/[0.05]
+
                     px-5
                     py-4
 
                     text-sm
                     leading-7
-                    text-[#475569]
+
+                    text-slate-300
                   "
                 >
                   You can visit the
@@ -794,7 +866,12 @@ export default function Message() {
                 justify-between
 
                 rounded-full
-                bg-[#F8FAFC]
+
+                border
+                border-white/10
+
+                bg-white/[0.04]
+
                 px-5
                 py-4
               "
@@ -802,11 +879,11 @@ export default function Message() {
               <p
                 className="
                   text-sm
-                  text-[#94A3B8]
+                  text-slate-400
                 "
               >
-                Ask about timings,
-                admissions, activities...
+                Ask about admissions,
+                timings, activities...
               </p>
 
               <button
@@ -814,19 +891,21 @@ export default function Message() {
                   flex
                   h-11
                   w-11
+
                   items-center
                   justify-center
 
                   rounded-full
-                  bg-[#2563EB]
 
-                  shadow-[0_10px_20px_rgba(37,99,235,0.15)]
+                  bg-[#C6A56A]
+
+                  shadow-[0_10px_30px_rgba(0,0,0,0.25)]
                 "
               >
                 <ArrowRight
                   size={18}
                   className="
-                    text-white
+                    text-[#0F172A]
                   "
                 />
               </button>

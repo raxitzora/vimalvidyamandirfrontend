@@ -35,61 +35,65 @@ export default function Talent() {
       className="
         relative
         overflow-hidden
-        bg-gradient-to-b
-        from-[#F8F6F1]
-        to-[#F1F5F9]
+
+        bg-[#1E293B]
+
         pt-20
         pb-24
+
         sm:pt-24
         sm:pb-32
       "
     >
-      {/* BACKGROUND GLOWS */}
+      {/* ATMOSPHERIC LAYERS */}
       <div
         className="
           absolute
           inset-0
-          overflow-hidden
-          pointer-events-none
-        "
-      >
-        <div
-          className="
-            absolute
-            top-[-100px]
-            right-[-100px]
-            w-[320px]
-            h-[320px]
-            rounded-full
-            bg-[#DBEAFE]
-            blur-3xl
-            opacity-40
-          "
-        />
 
-        <div
-          className="
-            absolute
-            bottom-[-120px]
-            left-[-100px]
-            w-[280px]
-            h-[280px]
-            rounded-full
-            bg-[#FEF3C7]
-            blur-3xl
-            opacity-40
-          "
-        />
-      </div>
+          bg-[radial-gradient(circle_at_top_right,rgba(198,165,106,0.12),transparent_28%)]
+        "
+      />
+
+      <div
+        className="
+          absolute
+          inset-0
+
+          bg-[linear-gradient(to_bottom,rgba(15,23,42,0.2),transparent,rgba(15,23,42,0.35))]
+        "
+      />
+
+      {/* CINEMATIC GLOW */}
+      <div
+        className="
+          absolute
+          -top-40
+          right-[-120px]
+
+          h-[380px]
+          w-[380px]
+
+          rounded-full
+
+          bg-[#C6A56A]/15
+
+          blur-3xl
+        "
+      />
 
       <div
         className="
           relative
           z-10
-          max-w-7xl
+
           mx-auto
+          max-w-7xl
+
           px-5
+
           sm:px-8
+
           lg:px-12
         "
       >
@@ -98,10 +102,12 @@ export default function Talent() {
           className="
             grid
             items-center
-            gap-12
+
+            gap-14
+
             xl:grid-cols-[0.95fr_1fr]
 
-            lg:gap-16
+            lg:gap-20
           "
         >
           {/* LEFT CONTENT */}
@@ -127,21 +133,27 @@ export default function Talent() {
                 inline-flex
                 items-center
                 gap-2
+
                 rounded-full
+
                 border
-                border-[#E7E2D8]
-                bg-white/80
+                border-white/10
+
+                bg-white/[0.04]
+
                 px-4
                 py-2
+
                 backdrop-blur-md
               "
             >
               <span
                 className="
-                  w-2
                   h-2
+                  w-2
                   rounded-full
-                  bg-[#C59D5F]
+
+                  bg-[#C6A56A]
                 "
               />
 
@@ -150,7 +162,8 @@ export default function Talent() {
                   text-[11px]
                   uppercase
                   tracking-[0.2em]
-                  text-[#64748B]
+
+                  text-slate-300
                   font-medium
                 "
               >
@@ -162,11 +175,14 @@ export default function Talent() {
             <h2
               className="
                 mt-7
+
                 max-w-2xl
+
                 text-[2.8rem]
-                leading-[0.98]
+                leading-[0.96]
                 tracking-tight
-                text-[#0F172A]
+
+                text-[#F8FAFC]
                 font-semibold
 
                 sm:text-[4rem]
@@ -176,31 +192,33 @@ export default function Talent() {
             >
               Every Child
               Deserves To Feel
-              Seen, Inspired
-              & Encouraged
+              Inspired,
+              Encouraged
+              & Confident
             </h2>
 
             {/* DESCRIPTION */}
             <p
               className="
                 mt-7
+
                 max-w-lg
+
                 text-[17px]
                 leading-8
-                text-[#475569]
+
+                text-slate-300
 
                 sm:text-[18px]
               "
             >
               We believe meaningful
               education happens when
-              children are given
-              opportunities to learn,
+              children are encouraged to
               explore, participate,
-              create, pray, express,
-              and grow with confidence
-              in a nurturing
-              environment.
+              create, pray, collaborate,
+              and grow with confidence in
+              a caring environment.
             </p>
 
             {/* VALUES */}
@@ -233,20 +251,26 @@ export default function Talent() {
                     <div
                       className="
                         flex
-                        w-11
                         h-11
+                        w-11
+
                         items-center
                         justify-center
+
                         rounded-xl
+
                         border
-                        border-[#ECE7DE]
-                        bg-white/90
+                        border-white/10
+
+                        bg-white/[0.04]
+
+                        backdrop-blur-md
                       "
                     >
                       <item.icon
                         size={18}
                         className="
-                          text-[#2563EB]
+                          text-[#E2C48D]
                         "
                       />
                     </div>
@@ -255,7 +279,8 @@ export default function Talent() {
                       className="
                         text-[15px]
                         font-medium
-                        text-[#334155]
+
+                        text-slate-100
 
                         sm:text-[16px]
                       "
@@ -278,21 +303,30 @@ export default function Talent() {
               }}
               className="
                 mt-10
+
                 inline-flex
                 w-full
+
                 items-center
                 justify-center
                 gap-3
+
                 rounded-full
-                bg-[#2563EB]
+
+                bg-[#C6A56A]
+
                 px-7
                 py-4
-                text-white
+
+                text-[#0F172A]
                 font-semibold
+
                 transition-all
                 duration-300
-                hover:bg-[#1D4ED8]
-                shadow-[0_12px_30px_rgba(37,99,235,0.18)]
+
+                hover:bg-[#E2C48D]
+
+                shadow-[0_15px_40px_rgba(0,0,0,0.18)]
 
                 sm:w-auto
               "
@@ -305,7 +339,7 @@ export default function Talent() {
             </motion.a>
           </motion.div>
 
-          {/* RIGHT VISUAL */}
+          {/* RIGHT IMAGE */}
           <motion.div
             initial={{
               opacity: 0,
@@ -328,68 +362,78 @@ export default function Talent() {
               className="
                 relative
                 overflow-hidden
-                rounded-[36px]
-                shadow-[0_20px_60px_rgba(15,23,42,0.08)]
+
+                rounded-[40px]
+
+                shadow-[0_30px_80px_rgba(0,0,0,0.28)]
               "
             >
               <img
                 src="/images/talent-main.jpg"
                 alt=""
                 className="
-                  w-full
                   h-[420px]
+                  w-full
                   object-cover
 
-                  sm:h-[520px]
+                  sm:h-[540px]
                 "
               />
 
-              {/* OVERLAY */}
+              {/* CINEMATIC OVERLAY */}
               <div
                 className="
                   absolute
                   inset-0
+
                   bg-gradient-to-t
-                  from-[#0F172A]/25
-                  via-transparent
+                  from-[#0F172A]/70
+                  via-[#0F172A]/15
                   to-transparent
                 "
               />
 
-              {/* QUOTE CARD */}
+              {/* QUOTE */}
               <div
                 className="
                   absolute
+
+                  bottom-5
                   left-5
                   right-5
-                  bottom-5
-                  rounded-3xl
-                  bg-white/80
-                  p-5
-                  backdrop-blur-md
-                  shadow-xl
 
+                  rounded-[28px]
+
+                  border
+                  border-white/10
+
+                  bg-[#0F172A]/45
+
+                  p-5
+
+                  backdrop-blur-xl
+
+                  sm:bottom-6
                   sm:left-6
                   sm:right-6
-                  sm:bottom-6
                 "
               >
                 <p
                   className="
                     text-sm
                     leading-7
-                    text-[#334155]
+
+                    text-slate-100
                     font-medium
 
                     sm:text-[15px]
                   "
                 >
                   “Education is not only
-                  about academic
-                  excellence, but also
-                  about nurturing
+                  about academic success,
+                  but about nurturing
                   confidence, kindness,
-                  values, and joyful
+                  creativity, and joyful
                   learning experiences.”
                 </p>
               </div>
@@ -405,26 +449,31 @@ export default function Talent() {
                 duration: 6,
               }}
               className="
-                hidden
-                lg:block
-
                 absolute
                 -left-10
                 bottom-10
+
+                hidden
+                lg:block
+
                 w-[180px]
+
                 overflow-hidden
+
                 rounded-[28px]
+
                 border
-                border-white/80
-                shadow-[0_20px_50px_rgba(15,23,42,0.08)]
+                border-white/10
+
+                shadow-[0_20px_60px_rgba(0,0,0,0.25)]
               "
             >
               <img
                 src="/images/talent-side.jpg"
                 alt=""
                 className="
-                  w-full
                   h-[240px]
+                  w-full
                   object-cover
                 "
               />
@@ -432,9 +481,8 @@ export default function Talent() {
           </motion.div>
         </div>
 
-        {/* EDITORIAL FLOW */}
+        {/* STORY SECTION */}
         <div className="mt-24 sm:mt-32">
-          {/* TOP ROW */}
           <div
             className="
               grid
@@ -464,24 +512,26 @@ export default function Talent() {
                 group
                 relative
                 overflow-hidden
-                rounded-[36px]
+
+                rounded-[40px]
               "
             >
               <img
                 src="/images/talent-1.jpg"
                 alt=""
                 className="
-                  w-full
                   h-[460px]
+                  w-full
+
                   object-cover
-                  will-change-transform
+
                   transition-transform
                   duration-700
                   ease-[cubic-bezier(0.22,1,0.36,1)]
 
                   group-hover:scale-105
 
-                  sm:h-[520px]
+                  sm:h-[540px]
                 "
               />
 
@@ -490,8 +540,9 @@ export default function Talent() {
                 className="
                   absolute
                   inset-0
+
                   bg-gradient-to-t
-                  from-[#0F172A]/25
+                  from-[#0F172A]/70
                   via-transparent
                   to-transparent
                 "
@@ -511,7 +562,8 @@ export default function Talent() {
                     text-xs
                     uppercase
                     tracking-[0.2em]
-                    text-white/75
+
+                    text-white/70
                   "
                 >
                   Activity Based Learning
@@ -520,9 +572,11 @@ export default function Talent() {
                 <h3
                   className="
                     mt-3
+
                     text-3xl
                     font-semibold
                     leading-tight
+
                     text-white
 
                     sm:text-4xl
@@ -535,7 +589,7 @@ export default function Talent() {
               </div>
             </motion.div>
 
-            {/* TEXT BLOCK */}
+            {/* TEXT PANEL */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -553,9 +607,16 @@ export default function Talent() {
                 delay: 0.1,
               }}
               className="
-                px-1
+                rounded-[36px]
 
-                lg:px-8
+                border
+                border-white/10
+
+                bg-white/[0.04]
+
+                p-8
+
+                backdrop-blur-xl
               "
             >
               <p
@@ -564,7 +625,8 @@ export default function Talent() {
                   font-semibold
                   uppercase
                   tracking-[0.2em]
-                  text-[#C59D5F]
+
+                  text-[#E2C48D]
                 "
               >
                 Child Development
@@ -573,10 +635,12 @@ export default function Talent() {
               <h3
                 className="
                   mt-5
+
                   text-4xl
                   font-semibold
                   leading-tight
-                  text-[#0F172A]
+
+                  text-white
 
                   lg:text-5xl
                 "
@@ -589,88 +653,107 @@ export default function Talent() {
               <p
                 className="
                   mt-6
+
                   text-[17px]
                   leading-8
-                  text-[#64748B]
+
+                  text-slate-300
                 "
               >
                 Through celebrations,
                 teamwork, activities,
-                values, creativity,
-                classroom learning, and
-                student participation,
-                children gradually grow
-                into confident and
-                compassionate
+                creativity, and student
+                participation, children
+                gradually grow into
+                confident and compassionate
                 individuals.
               </p>
             </motion.div>
           </div>
 
-          {/* IMAGE COLLAGE */}
+          {/* COLLAGE */}
           <div
             className="
               mt-6
-              grid
-              gap-4
 
-              sm:grid-cols-2
-              sm:gap-6
+              rounded-[40px]
 
-              lg:grid-cols-3
+              border
+              border-white/10
+
+              bg-white/[0.03]
+
+              p-4
+
+              backdrop-blur-xl
+
+              sm:p-6
             "
           >
-            {galleryImages.map(
-              (
-                image,
-                index
-              ) => (
-                <motion.div
-                  key={index}
-                  initial={{
-                    opacity: 0,
-                    y: 30,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    delay:
-                      index * 0.08,
-                  }}
-                  className="
-                    group
-                    overflow-hidden
-                    rounded-[32px]
-                  "
-                >
-                  <img
-                    src={image}
-                    alt=""
-                    className={`
-                      w-full
-                      object-cover
-                      will-change-transform
-                      transition-transform
-                      duration-700
-                      ease-[cubic-bezier(0.22,1,0.36,1)]
+            <div
+              className="
+                grid
+                gap-4
 
-                      group-hover:scale-105
+                sm:grid-cols-2
+                sm:gap-6
 
-                      ${
-                        index === 1
-                          ? "h-[420px]"
-                          : "h-[340px]"
-                      }
-                    `}
-                  />
-                </motion.div>
-              )
-            )}
+                lg:grid-cols-3
+              "
+            >
+              {galleryImages.map(
+                (
+                  image,
+                  index
+                ) => (
+                  <motion.div
+                    key={index}
+                    initial={{
+                      opacity: 0,
+                      y: 30,
+                    }}
+                    whileInView={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    viewport={{
+                      once: true,
+                    }}
+                    transition={{
+                      delay:
+                        index * 0.08,
+                    }}
+                    className="
+                      group
+                      overflow-hidden
+
+                      rounded-[32px]
+                    "
+                  >
+                    <img
+                      src={image}
+                      alt=""
+                      className={`
+                        w-full
+                        object-cover
+
+                        transition-transform
+                        duration-700
+                        ease-[cubic-bezier(0.22,1,0.36,1)]
+
+                        group-hover:scale-105
+
+                        ${
+                          index === 1
+                            ? "h-[420px]"
+                            : "h-[340px]"
+                        }
+                      `}
+                    />
+                  </motion.div>
+                )
+              )}
+            </div>
           </div>
         </div>
       </div>
