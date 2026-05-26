@@ -1,6 +1,4 @@
-import {
-  motion,
-} from "framer-motion";
+import { motion } from "framer-motion";
 
 import {
   ArrowRight,
@@ -15,40 +13,49 @@ const values = [
   "Values & Discipline",
 ];
 
+const questions = [
+  "Admission Process",
+  "School Timings",
+  "Activities & Events",
+  "Learning Environment",
+];
+
 export default function Message() {
   return (
     <section
       className="
         relative
         overflow-hidden
-        bg-[#FAF7F2]
-        py-24
-        sm:py-32
+        bg-gradient-to-b
+        from-[#F1F5F9]
+        to-[#F8F6F1]
+        pt-24
+        pb-28
+
+        sm:pt-28
+        sm:pb-36
       "
     >
-      {/* BACKGROUND LIGHT */}
+      {/* BACKGROUND GLOWS */}
       <div
         className="
-          absolute
-          top-0
-          left-0
-          w-full
-          h-full
-          overflow-hidden
           pointer-events-none
+          absolute
+          inset-0
+          overflow-hidden
         "
       >
         <div
           className="
             absolute
-            top-[-100px]
+            top-[-120px]
             left-[-120px]
-            w-[300px]
-            h-[300px]
+            h-[320px]
+            w-[320px]
             rounded-full
             bg-[#DBEAFE]
+            opacity-40
             blur-3xl
-            opacity-50
           "
         />
 
@@ -56,13 +63,13 @@ export default function Message() {
           className="
             absolute
             bottom-[-120px]
-            right-[-100px]
-            w-[280px]
+            right-[-120px]
             h-[280px]
+            w-[280px]
             rounded-full
             bg-[#FEF3C7]
+            opacity-40
             blur-3xl
-            opacity-50
           "
         />
       </div>
@@ -71,24 +78,28 @@ export default function Message() {
         className="
           relative
           z-10
-          max-w-7xl
           mx-auto
-          px-4
-          sm:px-6
-          lg:px-10
+          max-w-7xl
+          px-5
+
+          sm:px-8
+
+          lg:px-12
         "
       >
-        {/* ================================= */}
-        {/* TRUSTEE MESSAGE */}
-        {/* ================================= */}
+        {/* ===================================== */}
+        {/* TRUSTEE SECTION */}
+        {/* ===================================== */}
 
         <div
           className="
             grid
-            grid-cols-1
-            xl:grid-cols-[0.95fr_1fr]
-            gap-16
             items-center
+            gap-14
+
+            xl:grid-cols-[0.92fr_1fr]
+
+            lg:gap-20
           "
         >
           {/* IMAGE SIDE */}
@@ -122,9 +133,11 @@ export default function Message() {
                 src="/images/trustee.jpg"
                 alt="Trustee"
                 className="
+                  h-[460px]
                   w-full
-                  h-[620px]
                   object-cover
+
+                  sm:h-[560px]
                 "
               />
 
@@ -134,7 +147,7 @@ export default function Message() {
                   absolute
                   inset-0
                   bg-gradient-to-t
-                  from-[#0F172A]/35
+                  from-[#0F172A]/20
                   via-transparent
                   to-transparent
                 "
@@ -144,34 +157,40 @@ export default function Message() {
               <div
                 className="
                   absolute
-                  bottom-6
-                  left-6
-                  right-6
-                  rounded-[28px]
-                  bg-white/92
-                  backdrop-blur-sm
+                  bottom-5
+                  left-5
+                  right-5
+
+                  rounded-3xl
+                  bg-white/80
                   p-5
-                  shadow-xl
+                  backdrop-blur-md
+
+                  sm:bottom-6
+                  sm:left-6
+                  sm:right-6
                 "
               >
                 <p
                   className="
-                    text-[15px]
+                    text-sm
                     leading-7
                     text-[#334155]
                     font-medium
+
+                    sm:text-[15px]
                   "
                 >
-                  “Every child deserves an
-                  environment where they are
-                  encouraged to learn, grow,
-                  express themselves, and build
-                  confidence for the future.”
+                  “Every child deserves a
+                  caring environment where
+                  they feel encouraged,
+                  respected, inspired, and
+                  confident to grow.”
                 </p>
               </div>
             </div>
 
-            {/* FLOATING CARD */}
+            {/* FLOATING STAT */}
             <motion.div
               animate={{
                 y: [0, -8, 0],
@@ -182,28 +201,32 @@ export default function Message() {
               }}
               className="
                 hidden
+
                 lg:block
+
                 absolute
-                -right-12
+                -right-10
                 top-10
-                rounded-[28px]
+
+                rounded-3xl
                 border
                 border-[#ECE7DE]
-                bg-white
-                p-6
-                shadow-[0_20px_50px_rgba(15,23,42,0.06)]
+                bg-white/90
+                p-5
+                backdrop-blur-md
+                shadow-[0_20px_50px_rgba(15,23,42,0.05)]
               "
             >
               <p
                 className="
-                  text-xs
+                  text-[11px]
                   uppercase
                   tracking-[0.2em]
                   text-[#94A3B8]
                   font-semibold
                 "
               >
-                Educational Leadership
+                Educational Vision
               </p>
 
               <h3
@@ -220,15 +243,15 @@ export default function Message() {
               <p
                 className="
                   mt-2
+                  max-w-[170px]
                   text-sm
                   leading-6
                   text-[#64748B]
-                  max-w-[180px]
                 "
               >
-                Years dedicated to nurturing
-                young minds through education
-                and values.
+                Years dedicated to
+                nurturing children through
+                education and values.
               </p>
             </motion.div>
           </motion.div>
@@ -256,18 +279,21 @@ export default function Message() {
                 inline-flex
                 items-center
                 gap-2
+
                 rounded-full
                 border
                 border-[#E7E2D8]
-                bg-white
+                bg-white/80
                 px-4
                 py-2
-                shadow-sm
+                backdrop-blur-md
               "
             >
               <HeartHandshake
                 size={15}
-                className="text-[#C59D5F]"
+                className="
+                  text-[#C59D5F]
+                "
               />
 
               <span
@@ -287,60 +313,70 @@ export default function Message() {
             <h2
               className="
                 mt-7
-                text-[2.7rem]
-                leading-[1.08]
-                sm:text-6xl
-                lg:text-[4.7rem]
+                text-[2.8rem]
                 font-semibold
+                leading-[0.98]
                 tracking-tight
                 text-[#0F172A]
+
+                sm:text-[4rem]
+
+                lg:text-[5rem]
               "
             >
-              A School Built
-              On Care,
-              Values &
-              Meaningful Learning
+              A School
+              Rooted In
+              Care, Values
+              & Meaningful
+              Education
             </h2>
 
             {/* TEXT */}
             <p
               className="
                 mt-7
+                max-w-xl
                 text-[17px]
-                sm:text-[18px]
                 leading-8
                 text-[#475569]
+
+                sm:text-[18px]
               "
             >
-              At Shree Vimal Vidya Mandir,
-              we believe education should help
-              children become confident,
-              disciplined, compassionate, and
+              At Shree Vimal Vidya
+              Mandir, we believe
+              education should help
+              children become
+              confident, disciplined,
+              compassionate, and
               future-ready individuals.
             </p>
 
             <p
               className="
                 mt-6
+                max-w-xl
                 text-[17px]
-                sm:text-[18px]
                 leading-8
                 text-[#475569]
+
+                sm:text-[18px]
               "
             >
-              Our mission is to provide a safe,
-              caring, and inspiring environment
-              where every child receives
-              personal attention, meaningful
-              guidance, and opportunities to
-              grow academically and emotionally.
+              Our mission is to create
+              a safe and inspiring
+              environment where every
+              child receives personal
+              attention, meaningful
+              guidance, and joyful
+              learning experiences.
             </p>
 
             {/* VALUES */}
             <div
               className="
                 mt-10
-                space-y-4
+                space-y-5
               "
             >
               {values.map(
@@ -373,29 +409,33 @@ export default function Message() {
                   >
                     <div
                       className="
-                        w-11
-                        h-11
-                        rounded-2xl
-                        bg-white
-                        border
-                        border-[#ECE7DE]
                         flex
+                        h-11
+                        w-11
                         items-center
                         justify-center
-                        shadow-sm
+
+                        rounded-xl
+                        border
+                        border-[#ECE7DE]
+                        bg-white/90
                       "
                     >
                       <ShieldCheck
                         size={18}
-                        className="text-[#2563EB]"
+                        className="
+                          text-[#2563EB]
+                        "
                       />
                     </div>
 
                     <p
                       className="
-                        text-[#334155]
+                        text-[15px]
                         font-medium
-                        text-[16px]
+                        text-[#334155]
+
+                        sm:text-[16px]
                       "
                     >
                       {item}
@@ -407,21 +447,25 @@ export default function Message() {
           </motion.div>
         </div>
 
-        {/* ================================= */}
+        {/* ===================================== */}
         {/* AI ASSISTANT */}
-        {/* ================================= */}
+        {/* ===================================== */}
 
         <div
           className="
             mt-28
+
             grid
-            grid-cols-1
-            xl:grid-cols-[0.85fr_1fr]
-            gap-16
             items-center
+            gap-14
+
+            xl:grid-cols-[0.9fr_1fr]
+
+            lg:mt-36
+            lg:gap-20
           "
         >
-          {/* LEFT CONTENT */}
+          {/* LEFT SIDE */}
           <motion.div
             initial={{
               opacity: 0,
@@ -444,18 +488,21 @@ export default function Message() {
                 inline-flex
                 items-center
                 gap-2
+
                 rounded-full
                 border
                 border-[#E7E2D8]
-                bg-white
+                bg-white/80
                 px-4
                 py-2
-                shadow-sm
+                backdrop-blur-md
               "
             >
               <Bot
                 size={14}
-                className="text-[#2563EB]"
+                className="
+                  text-[#2563EB]
+                "
               />
 
               <span
@@ -475,36 +522,42 @@ export default function Message() {
             <h2
               className="
                 mt-7
-                text-[2.6rem]
-                leading-[1.08]
-                sm:text-5xl
-                lg:text-[4.4rem]
+                text-[2.8rem]
                 font-semibold
+                leading-[0.98]
                 tracking-tight
                 text-[#0F172A]
+
+                sm:text-[4rem]
+
+                lg:text-[4.8rem]
               "
             >
-              Quick Guidance
-              & Support
-              For Parents
+              Friendly
+              Guidance &
+              Support For
+              Parents
             </h2>
 
             {/* TEXT */}
             <p
               className="
                 mt-7
+                max-w-lg
                 text-[17px]
-                sm:text-[18px]
                 leading-8
                 text-[#475569]
-                max-w-xl
+
+                sm:text-[18px]
               "
             >
-              Parents can easily get answers
-              related to admissions, timings,
-              school activities, facilities,
-              and student life through our
-              friendly school support assistant.
+              Parents can quickly ask
+              about admissions,
+              activities, timings,
+              facilities, learning
+              environment, and school
+              information through our
+              helpful support assistant.
             </p>
 
             {/* QUESTIONS */}
@@ -516,12 +569,7 @@ export default function Message() {
                 gap-3
               "
             >
-              {[
-                "Admission Process",
-                "School Timings",
-                "Activities & Events",
-                "Learning Environment",
-              ].map(
+              {questions.map(
                 (
                   item,
                   index
@@ -532,13 +580,12 @@ export default function Message() {
                       rounded-full
                       border
                       border-[#ECE7DE]
-                      bg-white
-                      px-5
-                      py-3
+                      bg-white/90
+                      px-4
+                      py-2.5
                       text-sm
                       font-medium
                       text-[#475569]
-                      shadow-sm
                     "
                   >
                     {item}
@@ -548,7 +595,7 @@ export default function Message() {
             </div>
           </motion.div>
 
-          {/* CHAT EXPERIENCE */}
+          {/* CHAT UI */}
           <motion.div
             initial={{
               opacity: 0,
@@ -568,10 +615,11 @@ export default function Message() {
               rounded-[36px]
               border
               border-[#ECE7DE]
-              bg-white
+              bg-white/90
               p-5
+              shadow-[0_20px_60px_rgba(15,23,42,0.05)]
+
               sm:p-7
-              shadow-[0_20px_60px_rgba(15,23,42,0.06)]
             "
           >
             {/* TOP */}
@@ -580,32 +628,35 @@ export default function Message() {
                 flex
                 items-center
                 gap-4
-                pb-5
                 border-b
                 border-[#F1ECE4]
+                pb-5
               "
             >
               <div
                 className="
-                  w-12
-                  h-12
-                  rounded-2xl
-                  bg-[#EFF6FF]
                   flex
+                  h-12
+                  w-12
                   items-center
                   justify-center
+
+                  rounded-2xl
+                  bg-[#EFF6FF]
                 "
               >
                 <Bot
-                  className="text-[#2563EB]"
+                  className="
+                    text-[#2563EB]
+                  "
                 />
               </div>
 
               <div>
                 <h3
                   className="
-                    text-[#0F172A]
                     font-semibold
+                    text-[#0F172A]
                   "
                 >
                   School Support Assistant
@@ -613,12 +664,13 @@ export default function Message() {
 
                 <p
                   className="
+                    mt-1
                     text-sm
                     text-[#64748B]
-                    mt-1
                   "
                 >
-                  Friendly guidance for parents
+                  Helpful guidance for
+                  parents
                 </p>
               </div>
             </div>
@@ -635,18 +687,21 @@ export default function Message() {
                 <div
                   className="
                     max-w-[80%]
+
                     rounded-[24px]
                     rounded-br-md
+
                     bg-[#2563EB]
                     px-5
                     py-4
-                    text-white
+
                     text-sm
                     leading-7
+                    text-white
                   "
                 >
-                  What activities are available
-                  for students?
+                  What activities are
+                  available for students?
                 </div>
               </div>
 
@@ -655,23 +710,26 @@ export default function Message() {
                 <div
                   className="
                     max-w-[85%]
+
                     rounded-[24px]
                     rounded-bl-md
+
                     bg-[#F8FAFC]
                     px-5
                     py-4
-                    text-[#475569]
+
                     text-sm
                     leading-7
+                    text-[#475569]
                   "
                 >
                   Students participate in
                   cultural activities,
-                  celebrations, teamwork
-                  programs, creative learning,
-                  and activity-based classroom
-                  experiences throughout the
-                  academic year.
+                  celebrations, teamwork,
+                  creative learning, and
+                  activity-based classroom
+                  experiences throughout
+                  the academic year.
                 </div>
               </div>
 
@@ -680,17 +738,21 @@ export default function Message() {
                 <div
                   className="
                     max-w-[80%]
+
                     rounded-[24px]
                     rounded-br-md
+
                     bg-[#2563EB]
                     px-5
                     py-4
-                    text-white
+
                     text-sm
                     leading-7
+                    text-white
                   "
                 >
-                  How can I apply for admission?
+                  How can I apply for
+                  admission?
                 </div>
               </div>
 
@@ -699,20 +761,24 @@ export default function Message() {
                 <div
                   className="
                     max-w-[85%]
+
                     rounded-[24px]
                     rounded-bl-md
+
                     bg-[#F8FAFC]
                     px-5
                     py-4
-                    text-[#475569]
+
                     text-sm
                     leading-7
+                    text-[#475569]
                   "
                 >
-                  You can contact the school
-                  directly or visit the
-                  admission section to receive
-                  complete guidance regarding
+                  You can visit the
+                  admission section or
+                  contact the school
+                  directly to receive
+                  complete guidance about
                   the application process.
                 </div>
               </div>
@@ -722,9 +788,11 @@ export default function Message() {
             <div
               className="
                 mt-6
+
                 flex
                 items-center
                 justify-between
+
                 rounded-full
                 bg-[#F8FAFC]
                 px-5
@@ -737,25 +805,29 @@ export default function Message() {
                   text-[#94A3B8]
                 "
               >
-                Ask about admissions,
-                activities, timings...
+                Ask about timings,
+                admissions, activities...
               </p>
 
               <button
                 className="
-                  w-11
-                  h-11
-                  rounded-full
-                  bg-[#2563EB]
                   flex
+                  h-11
+                  w-11
                   items-center
                   justify-center
-                  shadow-[0_10px_20px_rgba(37,99,235,0.18)]
+
+                  rounded-full
+                  bg-[#2563EB]
+
+                  shadow-[0_10px_20px_rgba(37,99,235,0.15)]
                 "
               >
                 <ArrowRight
                   size={18}
-                  className="text-white"
+                  className="
+                    text-white
+                  "
                 />
               </button>
             </div>

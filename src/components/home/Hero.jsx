@@ -1,257 +1,312 @@
 import {
   motion,
+  useScroll,
+  useTransform,
 } from "framer-motion";
 
 import {
   ArrowRight,
-  ShieldCheck,
-  BookOpen,
+  Play,
   Sparkles,
-  HeartHandshake,
+  GraduationCap,
+  ShieldCheck,
 } from "lucide-react";
 
-const trustPoints = [
-  "KG to Std 5",
-  "Activity Based Learning",
-  "Safe Learning Environment",
-  "Holistic Development",
-];
-
-const highlights = [
-  {
-    icon: BookOpen,
-    title: "Joyful Learning",
-    text: "Encouraging curiosity through meaningful classroom experiences.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Safe Environment",
-    text: "A caring and disciplined atmosphere where every child feels secure.",
-  },
-  {
-    icon: Sparkles,
-    title: "Creative Growth",
-    text: "Helping students develop confidence, creativity, and communication.",
-  },
-];
+import heroVideo from "../../assets/videos/herovideo.mp4";
 
 export default function Hero() {
+  const { scrollYProgress } = useScroll();
+
+  // VIDEO PARALLAX ONLY
+  const videoScale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1, 1.12]
+  );
+
+  const videoY = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 120]
+  );
+
   return (
     <section
       id="home"
       className="
         relative
-        overflow-hidden
-        bg-[#FAF7F2]
+        min-h-[100svh]
         pt-32
-        pb-20
-        sm:pb-24
+        lg:pt-36
+        bg-[#0F172A]
       "
     >
-      {/* BACKGROUND GLOW */}
+      {/* VIDEO BACKGROUND */}
+      <motion.video
+        style={{
+          scale: videoScale,
+          y: videoY,
+        }}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="
+          absolute
+          inset-0
+          w-full
+          h-full
+          object-cover
+          opacity-70
+        "
+      >
+        <source
+          src={heroVideo}
+          type="video/mp4"
+        />
+      </motion.video>
+
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-[#020617]/55" />
+
+      {/* GRADIENT OVERLAY */}
+      <div
+        className="
+          absolute
+          inset-0
+          bg-gradient-to-b
+          from-[#020617]/30
+          via-[#020617]/20
+          to-[#0F172A]
+        "
+      />
+
+      {/* LIGHT GLOW */}
       <div
         className="
           absolute
           top-0
           left-0
-          w-full
-          h-full
-          overflow-hidden
-          pointer-events-none
+          w-[320px]
+          h-[320px]
+          rounded-full
+          bg-[#2563EB]/15
+          blur-3xl
         "
-      >
-        <div
-          className="
-            absolute
-            top-[-120px]
-            left-[-80px]
-            w-[320px]
-            h-[320px]
-            bg-[#DBEAFE]
-            blur-3xl
-            rounded-full
-            opacity-60
-          "
-        />
+      />
 
-        <div
-          className="
-            absolute
-            bottom-[-100px]
-            right-[-60px]
-            w-[280px]
-            h-[280px]
-            bg-[#FEF3C7]
-            blur-3xl
-            rounded-full
-            opacity-60
-          "
-        />
-      </div>
-
+      {/* MAIN CONTENT */}
       <div
         className="
           relative
           z-10
           max-w-7xl
           mx-auto
-          px-4
-          sm:px-6
-          lg:px-10
+          px-5
+          sm:px-8
+          lg:px-12
+          min-h-[calc(100svh-120px)]
+          flex
+          items-center
+          pb-24
+          lg:pb-10
         "
       >
         <div
           className="
             grid
-            grid-cols-1
-            xl:grid-cols-[1fr_0.9fr]
-            gap-14
+            w-full
             items-center
+            gap-16
+            xl:grid-cols-[1fr_390px]
           "
         >
-          {/* LEFT CONTENT */}
-          <motion.div
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-          >
-            {/* TOP BADGE */}
-            <div
+          {/* LEFT SIDE */}
+          <div>
+            {/* BADGE */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.6,
+              }}
               className="
                 inline-flex
                 items-center
                 gap-2
                 rounded-full
                 border
-                border-[#E7E2D8]
-                bg-white/90
+                border-white/10
+                bg-white/[0.05]
                 px-4
                 py-2
-                shadow-sm
+                backdrop-blur-md
               "
             >
-              <HeartHandshake
-                size={15}
-                className="text-[#C59D5F]"
+              <Sparkles
+                size={14}
+                className="text-[#D6B06B]"
               />
 
-              <span
+              <p
                 className="
                   text-[11px]
-                  sm:text-xs
-                  tracking-[0.18em]
-                  uppercase
-                  text-[#64748B]
                   font-medium
+                  uppercase
+                  tracking-[0.22em]
+                  text-white/70
                 "
               >
-                Trusted English Medium School
-              </span>
-            </div>
+                Shree Vimal Vidya Mandir
+              </p>
+            </motion.div>
 
             {/* HEADING */}
-            <h1
-              className="
-                mt-7
-                text-[2.8rem]
-                leading-[1.05]
-                sm:text-6xl
-                lg:text-[5rem]
-                font-semibold
-                tracking-tight
-                text-[#0F172A]
-                max-w-3xl
-              "
-            >
-              Helping Young Minds
-              Grow With Confidence,
-              Care & Creativity
-            </h1>
-
-            {/* DESCRIPTION */}
-            <p
-              className="
-                mt-7
-                text-[17px]
-                sm:text-[19px]
-                leading-8
-                text-[#475569]
-                max-w-2xl
-              "
-            >
-              At Shree Vimal Vidya Mandir,
-              we create a joyful and caring
-              learning environment where
-              children develop strong values,
-              confidence, creativity, and a
-              lifelong love for learning.
-            </p>
-
-            {/* TRUST PILLS */}
-            <div
+            <motion.h1
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.9,
+                delay: 0.1,
+              }}
               className="
                 mt-8
+                max-w-[720px]
+                text-[3.2rem]
+                font-bold
+                leading-[0.92]
+                tracking-[-0.04em]
+                text-white
+
+                sm:text-[4.5rem]
+
+                lg:text-[5.8rem]
+
+                xl:text-[6.3rem]
+              "
+            >
+              Building
+              Bright Futures
+              Through
+              Meaningful
+              Education
+            </motion.h1>
+
+            {/* DESCRIPTION */}
+            <motion.p
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                duration: 0.9,
+                delay: 0.2,
+              }}
+              className="
+                mt-8
+                max-w-2xl
+                text-base
+                leading-8
+                text-slate-300
+
+                sm:text-lg
+                sm:leading-9
+              "
+            >
+              A caring English medium school in
+              Madhavpur Ghed where children
+              learn with confidence, creativity,
+              discipline, and joy from KG to
+              Standard 5.
+            </motion.p>
+
+            {/* TRUST PILLS */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.3,
+              }}
+              className="
+                mt-10
                 flex
                 flex-wrap
                 gap-3
               "
             >
-              {trustPoints.map(
-                (item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{
-                      opacity: 0,
-                      y: 20,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    transition={{
-                      delay:
-                        index * 0.08,
-                    }}
-                    className="
-                      px-4
-                      py-3
-                      rounded-full
-                      bg-white
-                      border
-                      border-[#ECE7DE]
-                      text-[#334155]
-                      text-sm
-                      font-medium
-                      shadow-sm
-                    "
-                  >
-                    {item}
-                  </motion.div>
-                )
-              )}
-            </div>
+              {[
+                "Activity Based Learning",
+                "Safe Environment",
+                "Holistic Development",
+              ].map((item, index) => (
+                <div
+                  key={index}
+                  className="
+                    rounded-full
+                    border
+                    border-white/10
+                    bg-white/[0.05]
+                    px-4
+                    py-2
+                    text-xs
+                    text-slate-200
+                    backdrop-blur-md
+
+                    sm:px-5
+                    sm:text-sm
+                  "
+                >
+                  {item}
+                </div>
+              ))}
+            </motion.div>
 
             {/* BUTTONS */}
-            <div
+            <motion.div
+              initial={{
+                opacity: 0,
+                y: 30,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              transition={{
+                delay: 0.4,
+              }}
               className="
-                mt-10
+                mt-12
                 flex
                 flex-col
-                sm:flex-row
                 gap-4
+
+                md:flex-row
               "
             >
-              {/* PRIMARY */}
-              <motion.a
-                href="#admission"
+              {/* PRIMARY BUTTON */}
+              <motion.button
                 whileHover={{
                   y: -2,
                 }}
@@ -261,16 +316,19 @@ export default function Hero() {
                 className="
                   group
                   inline-flex
+                  w-full
                   items-center
                   justify-center
-                  gap-2
+                  gap-3
                   rounded-full
-                  bg-[#1D4ED8]
-                  px-7
+                  bg-[#2563EB]
+                  px-8
                   py-4
                   text-white
                   font-semibold
-                  shadow-[0_10px_25px_rgba(29,78,216,0.18)]
+                  shadow-[0_15px_40px_rgba(37,99,235,0.35)]
+
+                  md:w-auto
                 "
               >
                 Apply For Admission
@@ -283,11 +341,10 @@ export default function Hero() {
                     group-hover:translate-x-1
                   "
                 />
-              </motion.a>
+              </motion.button>
 
-              {/* SECONDARY */}
-              <motion.a
-                href="#about"
+              {/* SECONDARY BUTTON */}
+              <motion.button
                 whileHover={{
                   y: -2,
                 }}
@@ -296,152 +353,81 @@ export default function Hero() {
                 }}
                 className="
                   inline-flex
+                  w-full
                   items-center
                   justify-center
+                  gap-3
                   rounded-full
                   border
-                  border-[#E5E7EB]
-                  bg-white
-                  px-7
+                  border-white/10
+                  bg-white/[0.05]
+                  px-8
                   py-4
-                  text-[#0F172A]
+                  text-white
                   font-semibold
-                  shadow-sm
-                  hover:bg-[#F8FAFC]
-                  transition-colors
+                  backdrop-blur-md
+
+                  md:w-auto
                 "
               >
+                <Play size={18} />
                 Explore School
-              </motion.a>
-            </div>
-          </motion.div>
+              </motion.button>
+            </motion.div>
+          </div>
 
-          {/* RIGHT VISUAL STORYTELLING */}
+          {/* RIGHT SIDE CARDS */}
           <motion.div
             initial={{
               opacity: 0,
-              y: 50,
+              x: 60,
             }}
             animate={{
               opacity: 1,
-              y: 0,
+              x: 0,
             }}
             transition={{
               duration: 1,
+              delay: 0.4,
             }}
-            className="relative"
+            className="
+              hidden
+              xl:flex
+              flex-col
+              gap-5
+            "
           >
-            {/* MAIN IMAGE */}
+            {/* CARD 1 */}
             <div
               className="
-                relative
-                rounded-[34px]
-                overflow-hidden
-                shadow-[0_20px_60px_rgba(15,23,42,0.08)]
+                rounded-3xl
+                border
+                border-white/10
+                bg-white/[0.04]
+                p-7
+                backdrop-blur-xl
               "
             >
-              <img
-                src="/images/students-learning.jpg"
-                alt="Students Learning"
-                className="
-                  w-full
-                  h-[500px]
-                  object-cover
-                "
-              />
-
-              {/* SOFT OVERLAY */}
               <div
                 className="
-                  absolute
-                  inset-0
-                  bg-gradient-to-t
-                  from-[#0F172A]/40
-                  via-transparent
-                  to-transparent
-                "
-              />
-
-              {/* FLOATING QUOTE */}
-              <motion.div
-                animate={{
-                  y: [0, -8, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 5,
-                }}
-                className="
-                  absolute
-                  left-5
-                  bottom-5
-                  max-w-[280px]
-                  rounded-3xl
-                  bg-white/92
-                  backdrop-blur-sm
-                  p-5
-                  shadow-xl
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  bg-blue-500/15
                 "
               >
-                <p
-                  className="
-                    text-sm
-                    leading-6
-                    text-[#334155]
-                    font-medium
-                  "
-                >
-                  “Every child deserves a
-                  learning environment that
-                  inspires confidence,
-                  curiosity, and happiness.”
-                </p>
-              </motion.div>
-            </div>
-
-            {/* FLOATING CARD */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 6,
-              }}
-              className="
-                hidden
-                lg:block
-                absolute
-                -left-14
-                top-10
-                w-[260px]
-                rounded-[28px]
-                bg-white
-                border
-                border-[#ECE7DE]
-                p-5
-                shadow-[0_20px_50px_rgba(15,23,42,0.06)]
-              "
-            >
-              <p
-                className="
-                  text-xs
-                  uppercase
-                  tracking-[0.2em]
-                  text-[#94A3B8]
-                  font-semibold
-                "
-              >
-                Our Philosophy
-              </p>
+                <GraduationCap className="text-blue-400" />
+              </div>
 
               <h3
                 className="
-                  mt-4
+                  mt-6
                   text-2xl
                   font-semibold
-                  leading-snug
-                  text-[#0F172A]
+                  text-white
                 "
               >
                 Learning Beyond Books
@@ -450,92 +436,111 @@ export default function Hero() {
               <p
                 className="
                   mt-4
-                  text-sm
-                  leading-7
-                  text-[#64748B]
+                  leading-8
+                  text-slate-300
                 "
               >
-                We nurture academic growth,
+                We nurture confidence,
                 creativity, discipline, and
-                strong values through
-                meaningful educational
-                experiences.
+                meaningful growth through
+                modern educational experiences.
               </p>
-            </motion.div>
+            </div>
 
-            {/* BOTTOM CARDS */}
+            {/* CARD 2 */}
             <div
               className="
-                grid
-                sm:grid-cols-3
-                gap-4
-                mt-5
+                rounded-3xl
+                border
+                border-white/10
+                bg-[#D6B06B]/10
+                p-7
+                backdrop-blur-xl
               "
             >
-              {highlights.map(
-                (
-                  item,
-                  index
-                ) => (
-                  <motion.div
-                    key={index}
-                    whileHover={{
-                      y: -4,
-                    }}
-                    className="
-                      rounded-[24px]
-                      bg-white
-                      border
-                      border-[#ECE7DE]
-                      p-5
-                      shadow-sm
-                    "
-                  >
-                    <div
-                      className="
-                        w-12
-                        h-12
-                        rounded-2xl
-                        bg-[#EFF6FF]
-                        flex
-                        items-center
-                        justify-center
-                      "
-                    >
-                      <item.icon
-                        size={20}
-                        className="text-[#2563EB]"
-                      />
-                    </div>
+              <div
+                className="
+                  flex
+                  h-14
+                  w-14
+                  items-center
+                  justify-center
+                  rounded-2xl
+                  bg-[#D6B06B]/20
+                "
+              >
+                <ShieldCheck className="text-[#D6B06B]" />
+              </div>
 
-                    <h4
-                      className="
-                        mt-4
-                        text-lg
-                        font-semibold
-                        text-[#0F172A]
-                      "
-                    >
-                      {item.title}
-                    </h4>
+              <h3
+                className="
+                  mt-6
+                  text-2xl
+                  font-semibold
+                  text-white
+                "
+              >
+                Safe & Caring Environment
+              </h3>
 
-                    <p
-                      className="
-                        mt-2
-                        text-sm
-                        leading-6
-                        text-[#64748B]
-                      "
-                    >
-                      {item.text}
-                    </p>
-                  </motion.div>
-                )
-              )}
+              <p
+                className="
+                  mt-4
+                  leading-8
+                  text-slate-300
+                "
+              >
+                Every child receives personal
+                attention in a warm and
+                supportive educational
+                atmosphere.
+              </p>
             </div>
           </motion.div>
         </div>
       </div>
+
+      {/* SCROLL INDICATOR */}
+      <motion.div
+        animate={{
+          y: [0, 10, 0],
+        }}
+        transition={{
+          repeat: Infinity,
+          duration: 2,
+        }}
+        className="
+          absolute
+          bottom-5
+          left-1/2
+          z-20
+          -translate-x-1/2
+
+          lg:bottom-8
+        "
+      >
+        <div
+          className="
+            flex
+            h-10
+            w-6
+            justify-center
+            rounded-full
+            border
+            border-white/20
+            p-2
+          "
+        >
+          <div
+            className="
+              h-3
+              w-1.5
+              rounded-full
+              bg-[#D6B06B]
+            "
+          />
+        </div>
+      </motion.div>
     </section>
   );
 }

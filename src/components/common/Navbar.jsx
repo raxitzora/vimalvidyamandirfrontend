@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 import {
   motion,
   AnimatePresence,
@@ -7,16 +8,16 @@ import {
 import {
   Menu,
   X,
-  ChevronRight,
+  ArrowRight,
 } from "lucide-react";
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Staff", href: "#staff" },
-  { name: "Gallery", href: "#gallery" },
-  { name: "Admission", href: "#admission" },
-  { name: "Contact", href: "#contact" },
+  "Home",
+  "About",
+  "Staff",
+  "Gallery",
+  "Admission",
+  "Contact",
 ];
 
 export default function Navbar() {
@@ -31,7 +32,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30);
+      setIsScrolled(window.scrollY > 40);
     };
 
     window.addEventListener(
@@ -53,9 +54,10 @@ export default function Navbar() {
 
   return (
     <>
+      {/* NAVBAR */}
       <motion.header
         initial={{
-          y: -80,
+          y: -100,
           opacity: 0,
         }}
         animate={{
@@ -63,7 +65,7 @@ export default function Navbar() {
           opacity: 1,
         }}
         transition={{
-          duration: 0.7,
+          duration: 0.8,
           ease: [0.22, 1, 0.36, 1],
         }}
         className="
@@ -72,225 +74,204 @@ export default function Navbar() {
           left-0
           w-full
           z-50
-          px-4
-          sm:px-6
-          lg:px-10
-          pt-4
         "
       >
         <div
           className={`
-            max-w-7xl
-            mx-auto
             transition-all
             duration-500
 
             ${
               isScrolled
                 ? `
-                  bg-white/96
-                  shadow-[0_8px_30px_rgba(15,23,42,0.06)]
-                  border border-[#E8E2D9]
-                  rounded-2xl
+                  bg-[#0F172A]/75
+                  backdrop-blur-2xl
+                  border-b
+                  border-white/10
                 `
                 : `
-                  bg-[#FFFDF9]
-                  border border-[#EFE7DC]
-                  rounded-[28px]
+                  bg-transparent
                 `
             }
           `}
         >
           <div
-            className={`
-              flex
-              items-center
-              justify-between
-              transition-all
-              duration-500
-
-              ${
-                isScrolled
-                  ? "px-5 py-3"
-                  : "px-6 lg:px-8 py-4"
-              }
-            `}
+            className="
+              max-w-7xl
+              mx-auto
+              px-5
+              sm:px-8
+              lg:px-12
+            "
           >
-            {/* LEFT BRANDING */}
-            <a
-              href="#home"
-              className="
+            <div
+              className={`
                 flex
                 items-center
-                gap-4
-                shrink-0
-              "
+                justify-between
+                transition-all
+                duration-500
+
+                ${
+                  isScrolled
+                    ? "py-4"
+                    : "py-6"
+                }
+              `}
             >
               {/* LOGO */}
-              <div
+              <a
+                href="#home"
                 className="
-                  w-12
-                  h-12
-                  rounded-2xl
-                  bg-[#1E40AF]
                   flex
                   items-center
-                  justify-center
-                  shadow-sm
+                  gap-4
                 "
               >
-                <span
+                {/* ICON */}
+                <div
                   className="
-                    text-white
-                    font-bold
-                    text-lg
-                    tracking-wide
-                  "
-                >
-                  SV
-                </span>
-              </div>
-
-              {/* TEXT */}
-              <div>
-                <h1
-                  className="
-                    text-[#0F172A]
-                    font-semibold
-                    tracking-tight
-                    text-[15px]
-                    sm:text-[17px]
-                    leading-tight
-                  "
-                >
-                  Shree Vimal Vidya Mandir
-                </h1>
-
-                <p
-                  className="
-                    text-[#64748B]
-                    text-[11px]
-                    sm:text-xs
-                    font-medium
-                    mt-0.5
-                  "
-                >
-                  English Medium School
-                </p>
-              </div>
-            </a>
-
-            {/* DESKTOP NAV */}
-            <nav
-              className="
-                hidden
-                lg:flex
-                items-center
-                gap-1
-              "
-            >
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={() =>
-                    setActiveLink(link.name)
-                  }
-                  className={`
-                    relative
-                    px-5
-                    py-3
-                    rounded-full
-                    text-[15px]
-                    font-medium
-                    transition-all
-                    duration-300
-
-                    ${
-                      activeLink === link.name
-                        ? `
-                          text-[#1D4ED8]
-                          bg-[#EFF6FF]
-                        `
-                        : `
-                          text-[#334155]
-                          hover:text-[#1D4ED8]
-                          hover:bg-[#F8FAFC]
-                        `
-                    }
-                  `}
-                >
-                  {link.name}
-
-                  <span
-                    className={`
-                      absolute
-                      left-1/2
-                      -translate-x-1/2
-                      bottom-2
-                      h-[2px]
-                      rounded-full
-                      bg-[#C59D5F]
-                      transition-all
-                      duration-300
-
-                      ${
-                        activeLink === link.name
-                          ? "w-6 opacity-100"
-                          : "w-0 opacity-0"
-                      }
-                    `}
-                  />
-                </a>
-              ))}
-            </nav>
-
-            {/* RIGHT */}
-            <div
-              className="
-                hidden
-                lg:flex
-                items-center
-              "
-            >
-              <motion.a
-                href="#admission"
-                whileHover={{
-                  y: -1,
-                  scale: 1.02,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                transition={{
-                  duration: 0.25,
-                }}
-                className="
-                  group
-                  relative
-                  overflow-hidden
-                  rounded-full
-                  bg-[#1D4ED8]
-                  px-6
-                  py-3
-                  text-white
-                  text-sm
-                  font-semibold
-                  shadow-[0_8px_20px_rgba(29,78,216,0.18)]
-                "
-              >
-                <span
-                  className="
-                    relative
-                    z-10
+                    w-12
+                    h-12
+                    rounded-2xl
+                    bg-[#2563EB]
                     flex
                     items-center
-                    gap-2
+                    justify-center
+                    shadow-[0_10px_30px_rgba(37,99,235,0.35)]
+                  "
+                >
+                  <span
+                    className="
+                      text-white
+                      font-bold
+                      text-lg
+                    "
+                  >
+                    SV
+                  </span>
+                </div>
+
+                {/* TEXT */}
+                <div>
+                  <h1
+                    className="
+                      text-white
+                      font-semibold
+                      text-[15px]
+                      sm:text-[17px]
+                      tracking-tight
+                    "
+                  >
+                    Shree Vimal Vidya Mandir
+                  </h1>
+
+                  <p
+                    className="
+                      text-white/60
+                      text-[11px]
+                      sm:text-xs
+                      mt-0.5
+                      tracking-wide
+                    "
+                  >
+                    English Medium School
+                  </p>
+                </div>
+              </a>
+
+              {/* DESKTOP NAV */}
+              <nav
+                className="
+                  hidden
+                  lg:flex
+                  items-center
+                  gap-10
+                "
+              >
+                {navLinks.map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item.toLowerCase()}`}
+                    onClick={() =>
+                      setActiveLink(item)
+                    }
+                    className="
+                      group
+                      relative
+                      text-[15px]
+                      font-medium
+                      text-white/75
+                      hover:text-white
+                      transition-all
+                      duration-300
+                    "
+                  >
+                    <span
+                      className="
+                        relative
+                        z-10
+                      "
+                    >
+                      {item}
+                    </span>
+
+                    {/* UNDERLINE */}
+                    <span
+                      className={`
+                        absolute
+                        left-0
+                        -bottom-2
+                        h-[2px]
+                        bg-[#D6B06B]
+                        transition-all
+                        duration-300
+
+                        ${
+                          activeLink === item
+                            ? "w-full"
+                            : "w-0 group-hover:w-full"
+                        }
+                      `}
+                    />
+                  </a>
+                ))}
+              </nav>
+
+              {/* RIGHT */}
+              <div
+                className="
+                  hidden
+                  lg:flex
+                  items-center
+                "
+              >
+                <motion.a
+                  href="#admission"
+                  whileHover={{
+                    y: -2,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    gap-3
+                    rounded-full
+                    bg-[#2563EB]
+                    px-7
+                    py-3.5
+                    text-white
+                    text-sm
+                    font-semibold
+                    shadow-[0_12px_35px_rgba(37,99,235,0.35)]
                   "
                 >
                   Apply Now
 
-                  <ChevronRight
+                  <ArrowRight
                     size={16}
                     className="
                       transition-transform
@@ -298,47 +279,35 @@ export default function Navbar() {
                       group-hover:translate-x-1
                     "
                   />
-                </span>
+                </motion.a>
+              </div>
 
-                <div
-                  className="
-                    absolute
-                    inset-0
-                    bg-white/10
-                    opacity-0
-                    group-hover:opacity-100
-                    transition-opacity
-                    duration-300
-                  "
-                />
-              </motion.a>
+              {/* MOBILE BUTTON */}
+              <motion.button
+                whileTap={{
+                  scale: 0.94,
+                }}
+                onClick={() =>
+                  setMenuOpen(true)
+                }
+                className="
+                  lg:hidden
+                  w-11
+                  h-11
+                  rounded-2xl
+                  border
+                  border-white/10
+                  bg-white/5
+                  backdrop-blur-xl
+                  flex
+                  items-center
+                  justify-center
+                  text-white
+                "
+              >
+                <Menu size={22} />
+              </motion.button>
             </div>
-
-            {/* MOBILE BUTTON */}
-            <motion.button
-              whileTap={{
-                scale: 0.95,
-              }}
-              onClick={() =>
-                setMenuOpen(true)
-              }
-              className="
-                lg:hidden
-                w-11
-                h-11
-                rounded-2xl
-                border
-                border-[#E2E8F0]
-                bg-white
-                flex
-                items-center
-                justify-center
-                text-[#0F172A]
-                shadow-sm
-              "
-            >
-              <Menu size={22} />
-            </motion.button>
           </div>
         </div>
       </motion.header>
@@ -358,13 +327,13 @@ export default function Navbar() {
               className="
                 fixed
                 inset-0
-                bg-black/20
-                backdrop-blur-[2px]
+                bg-[#020617]/70
+                backdrop-blur-md
                 z-[60]
               "
             />
 
-            {/* PANEL */}
+            {/* MENU PANEL */}
             <motion.div
               initial={{
                 opacity: 0,
@@ -379,21 +348,19 @@ export default function Navbar() {
                 y: -40,
               }}
               transition={{
-                duration: 0.35,
+                duration: 0.4,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="
                 fixed
-                top-4
-                left-4
-                right-4
+                top-0
+                left-0
+                w-full
                 z-[70]
-                bg-[#FFFDF9]
-                rounded-[32px]
-                border
-                border-[#ECE4D8]
-                shadow-[0_20px_60px_rgba(15,23,42,0.08)]
-                overflow-hidden
+                bg-[#0F172A]/95
+                backdrop-blur-2xl
+                border-b
+                border-white/10
               "
             >
               {/* TOP */}
@@ -405,47 +372,28 @@ export default function Navbar() {
                   px-5
                   py-5
                   border-b
-                  border-[#F1ECE4]
+                  border-white/10
                 "
               >
-                <div className="flex items-center gap-3">
-                  <div
+                <div>
+                  <h2
                     className="
-                      w-11
-                      h-11
-                      rounded-2xl
-                      bg-[#1E40AF]
-                      flex
-                      items-center
-                      justify-center
+                      text-white
+                      font-semibold
                     "
                   >
-                    <span className="text-white font-bold">
-                      SV
-                    </span>
-                  </div>
+                    Shree Vimal Vidya Mandir
+                  </h2>
 
-                  <div>
-                    <h2
-                      className="
-                        text-[#0F172A]
-                        font-semibold
-                        text-[15px]
-                      "
-                    >
-                      Shree Vimal Vidya Mandir
-                    </h2>
-
-                    <p
-                      className="
-                        text-[#64748B]
-                        text-xs
-                        mt-0.5
-                      "
-                    >
-                      English Medium School
-                    </p>
-                  </div>
+                  <p
+                    className="
+                      text-white/50
+                      text-xs
+                      mt-1
+                    "
+                  >
+                    English Medium School
+                  </p>
                 </div>
 
                 <button
@@ -456,11 +404,13 @@ export default function Navbar() {
                     w-10
                     h-10
                     rounded-xl
-                    bg-[#F8FAFC]
+                    bg-white/5
+                    border
+                    border-white/10
                     flex
                     items-center
                     justify-center
-                    text-[#0F172A]
+                    text-white
                   "
                 >
                   <X size={20} />
@@ -468,77 +418,61 @@ export default function Navbar() {
               </div>
 
               {/* LINKS */}
-              <div className="p-4">
-                <div className="space-y-2">
-                  {navLinks.map(
-                    (link, index) => (
-                      <motion.a
-                        key={link.name}
-                        href={link.href}
-                        initial={{
-                          opacity: 0,
-                          y: 10,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          delay:
-                            index * 0.05,
-                        }}
-                        whileTap={{
-                          scale: 0.98,
-                        }}
-                        onClick={() => {
-                          setActiveLink(
-                            link.name
-                          );
-
-                          setMenuOpen(
-                            false
-                          );
-                        }}
-                        className={`
-                          flex
-                          items-center
-                          justify-between
-                          rounded-2xl
-                          px-4
-                          py-4
-                          transition-all
-                          duration-300
-
-                          ${
-                            activeLink ===
-                            link.name
-                              ? `
-                                bg-[#EFF6FF]
-                                text-[#1D4ED8]
-                              `
-                              : `
-                                text-[#334155]
-                                hover:bg-[#F8FAFC]
-                              `
-                          }
-                        `}
+              <div
+                className="
+                  px-5
+                  py-8
+                  space-y-2
+                "
+              >
+                {navLinks.map(
+                  (item, index) => (
+                    <motion.a
+                      key={item}
+                      href={`#${item.toLowerCase()}`}
+                      initial={{
+                        opacity: 0,
+                        x: -20,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={{
+                        delay:
+                          index * 0.06,
+                      }}
+                      onClick={() =>
+                        setMenuOpen(false)
+                      }
+                      className="
+                        flex
+                        items-center
+                        justify-between
+                        rounded-2xl
+                        px-5
+                        py-4
+                        text-white/80
+                        hover:bg-white/5
+                        transition-all
+                        duration-300
+                      "
+                    >
+                      <span
+                        className="
+                          text-lg
+                          font-medium
+                        "
                       >
-                        <span
-                          className="
-                            font-medium
-                            text-[15px]
-                          "
-                        >
-                          {link.name}
-                        </span>
+                        {item}
+                      </span>
 
-                        <ChevronRight
-                          size={18}
-                        />
-                      </motion.a>
-                    )
-                  )}
-                </div>
+                      <ArrowRight
+                        size={18}
+                      />
+                    </motion.a>
+                  )
+                )}
 
                 {/* CTA */}
                 <motion.a
@@ -547,22 +481,22 @@ export default function Navbar() {
                     scale: 0.98,
                   }}
                   className="
-                    mt-5
+                    mt-6
                     flex
                     items-center
                     justify-center
-                    gap-2
+                    gap-3
                     rounded-2xl
-                    bg-[#1D4ED8]
+                    bg-[#2563EB]
                     py-4
                     text-white
                     font-semibold
-                    shadow-[0_10px_25px_rgba(29,78,216,0.18)]
+                    shadow-[0_12px_35px_rgba(37,99,235,0.35)]
                   "
                 >
-                  Apply Now
+                  Apply For Admission
 
-                  <ChevronRight
+                  <ArrowRight
                     size={18}
                   />
                 </motion.a>
