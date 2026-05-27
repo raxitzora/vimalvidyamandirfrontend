@@ -59,29 +59,19 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] =
     useState(false);
 
-  const [scrollDirection, setScrollDirection] =
-    useState("up");
-
   const lastScrollY = useRef(0);
 
   const location = useLocation();
 
-  /* SCROLL DETECTION */
+  /* SCROLL */
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY =
         window.scrollY;
 
-      setIsScrolled(currentScrollY > 40);
-
-      if (
-        currentScrollY >
-        lastScrollY.current
-      ) {
-        setScrollDirection("down");
-      } else {
-        setScrollDirection("up");
-      }
+      setIsScrolled(
+        currentScrollY > 40
+      );
 
       lastScrollY.current =
         currentScrollY;
@@ -108,28 +98,11 @@ export default function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <motion.header
-        animate={{
-          y:
-            scrollDirection === "down" &&
-            isScrolled
-              ? -10
-              : 0,
-
-          scale:
-            scrollDirection === "down" &&
-            isScrolled
-              ? 0.985
-              : 1,
-        }}
-        transition={{
-          duration: 0.45,
-          ease: [0.22, 1, 0.36, 1],
-        }}
+      <header
         className="
           fixed
-          top-0
           left-0
+          top-0
           z-50
           w-full
         "
@@ -141,36 +114,38 @@ export default function Navbar() {
             sm:px-5
           "
         >
-          {/* WRAPPER */}
+          {/* CONTAINER */}
           <motion.div
             animate={{
+              width: isScrolled
+                ? "88%"
+                : "100%",
+
               borderRadius:
                 isScrolled
-                  ? "30px"
+                  ? "28px"
                   : "0px",
 
-              width:
-                isScrolled
-                  ? "96%"
-                  : "100%",
+              y: isScrolled
+                ? 5
+                : 0,
             }}
             transition={{
-              duration: 0.5,
+              duration: 0.55,
               ease: [0.22, 1, 0.36, 1],
             }}
             className={`
               mx-auto
-              transition-all
-              duration-500
+              overflow-hidden
 
               ${
                 isScrolled
                   ? `
-                    bg-[#0F172A]/68
                     border
                     border-white/10
+                    bg-[#0F172A]/88
+                    shadow-[0_20px_70px_rgba(0,0,0,0.35)]
                     backdrop-blur-2xl
-                    shadow-[0_20px_60px_rgba(0,0,0,0.28)]
                   `
                   : `
                     bg-transparent
@@ -201,7 +176,7 @@ export default function Navbar() {
                       : "22px",
                 }}
                 transition={{
-                  duration: 0.45,
+                  duration: 0.35,
                 }}
                 className="
                   flex
@@ -214,55 +189,36 @@ export default function Navbar() {
                   to="/"
                   className="
                     flex
+                    min-w-0
                     items-center
-                    gap-4
+                    gap-3
                   "
                 >
                   {/* ICON */}
                   <motion.div
                     whileHover={{
-                      y: -2,
+                      scale: 1.05,
                     }}
-                    animate={{
-                      scale:
-                        isScrolled
-                          ? 0.92
-                          : 1,
+                    whileTap={{
+                      scale: 0.96,
                     }}
                     className="
-                      relative
                       flex
-                      h-12
-                      w-12
+                      h-11
+                      w-11
+                      shrink-0
                       items-center
                       justify-center
-                      overflow-hidden
                       rounded-2xl
                       bg-[#2563EB]
+                      text-white
                       shadow-[0_10px_30px_rgba(37,99,235,0.35)]
                     "
                   >
-                    <motion.div
-                      animate={{
-                        opacity:
-                          isScrolled
-                            ? 0.5
-                            : 0.85,
-                      }}
-                      className="
-                        absolute
-                        inset-0
-                        bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.45),transparent_70%)]
-                      "
-                    />
-
                     <span
                       className="
-                        relative
-                        z-10
-                        text-lg
+                        text-base
                         font-bold
-                        text-white
                       "
                     >
                       SV
@@ -270,30 +226,29 @@ export default function Navbar() {
                   </motion.div>
 
                   {/* TEXT */}
-                  <div>
-                    <motion.h1
-                      animate={{
-                        fontSize:
-                          isScrolled
-                            ? "15px"
-                            : "17px",
-                      }}
+                  <div className="min-w-0">
+                    <h1
                       className="
+                        truncate
+                        text-[15px]
                         font-semibold
                         tracking-tight
                         text-white
+                        sm:text-[16px]
                       "
                     >
                       Shree Vimal Vidya Mandir
-                    </motion.h1>
+                    </h1>
 
                     <p
                       className="
                         mt-0.5
-                        text-[11px]
+                        truncate
+                        text-[10px]
                         uppercase
                         tracking-[0.14em]
-                        text-white/60
+                        text-white/55
+                        sm:text-[11px]
                       "
                     >
                       English Medium School
@@ -309,175 +264,222 @@ export default function Navbar() {
                     lg:items-center
                   "
                 >
-                  <motion.div
-                    animate={{
-                      gap:
-                        isScrolled
-                          ? "24px"
-                          : "40px",
-                    }}
+                  <div
                     className="
                       flex
                       items-center
+                      gap-2
+                      rounded-full
+                      border
+                      border-white/10
+                      bg-white/[0.03]
+                      p-2
+                      backdrop-blur-xl
                     "
                   >
                     {navLinks.map(
-                      (item) => (
-                        <motion.div
-                          key={item.name}
-                          whileTap={{
-                            scale: 0.92,
-                          }}
-                          className="
-                            group
-                            relative
-                            overflow-hidden
-                            rounded-full
-                          "
-                        >
-                          {/* ACTIVE BG */}
-                          <motion.div
-                            animate={{
-                              opacity:
-                                location.pathname ===
-                                item.path
-                                  ? 1
-                                  : 0,
+                      (item) => {
+                        const isActive =
+                          location.pathname ===
+                          item.path;
 
-                              scale:
-                                location.pathname ===
-                                item.path
-                                  ? 1
-                                  : 0.8,
-                            }}
-                            transition={{
-                              duration: 0.35,
-                            }}
-                            className="
-                              absolute
-                              inset-0
-                              rounded-full
-                              bg-white/[0.06]
-                            "
-                          />
-
+                        return (
                           <Link
+                            key={item.name}
                             to={item.path}
-                            className={`
-                              relative
-                              z-10
-                              block
-                              px-5
-                              py-2.5
-                              text-[15px]
-                              font-medium
-                              transition-all
-                              duration-300
-
-                              ${
-                                location.pathname ===
-                                item.path
-                                  ? "text-white"
-                                  : "text-white/72 hover:text-white"
-                              }
-                            `}
+                            className="relative"
                           >
-                            {item.name}
+                            <motion.div
+                              whileHover={{
+                                y: -2,
+                              }}
+                              whileTap={{
+                                scale: 0.96,
+                              }}
+                              transition={{
+                                duration: 0.2,
+                              }}
+                              className={`
+                                group
+                                relative
+                                overflow-hidden
+                                rounded-full
+                                px-5
+                                py-3
+                                text-[15px]
+                                font-medium
+                                transition-all
+                                duration-300
+
+                                ${
+                                  isActive
+                                    ? `
+                                      text-white
+                                    `
+                                    : `
+                                      text-white/70
+                                      hover:text-white
+                                    `
+                                }
+                              `}
+                            >
+                              {/* ACTIVE */}
+                              {isActive && (
+                                <motion.div
+                                  layoutId="nav-pill"
+                                  transition={{
+                                    type: "spring",
+                                    stiffness: 260,
+                                    damping: 24,
+                                  }}
+                                  className="
+                                    absolute
+                                    inset-0
+                                    rounded-full
+                                    border
+                                    border-white/10
+                                    bg-white/[0.08]
+                                  "
+                                />
+                              )}
+
+                              {/* LIGHT */}
+                              <div
+                                className="
+                                  absolute
+                                  inset-0
+                                  opacity-0
+                                  transition-opacity
+                                  duration-300
+                                  group-hover:opacity-100
+                                "
+                              >
+                                <div
+                                  className="
+                                    absolute
+                                    inset-0
+                                    bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_70%)]
+                                  "
+                                />
+                              </div>
+
+                              {/* TEXT */}
+                              <span
+                                className="
+                                  relative
+                                  z-10
+                                "
+                              >
+                                {item.name}
+                              </span>
+
+                              {/* UNDERLINE */}
+                              <motion.div
+                                initial={{
+                                  scaleX: 0,
+                                }}
+                                whileHover={{
+                                  scaleX: 1,
+                                }}
+                                transition={{
+                                  duration: 0.3,
+                                }}
+                                className="
+                                  absolute
+                                  bottom-1.5
+                                  left-4
+                                  right-4
+                                  h-[1px]
+                                  origin-left
+                                  bg-gradient-to-r
+                                  from-[#E8D4AE]
+                                  to-transparent
+                                "
+                              />
+                            </motion.div>
                           </Link>
-                        </motion.div>
-                      )
+                        );
+                      }
                     )}
-                  </motion.div>
+                  </div>
                 </nav>
 
-                {/* CTA */}
+                {/* RIGHT */}
                 <div
                   className="
-                    hidden
-                    lg:flex
+                    flex
+                    items-center
+                    gap-3
                   "
                 >
-                  <Link to="/admission">
+                  {/* CTA */}
+                  <Link
+                    to="/admission"
+                    className="
+                      hidden
+                      lg:block
+                    "
+                  >
                     <motion.div
                       whileHover={{
                         y: -2,
                       }}
                       whileTap={{
-                        scale: 0.95,
+                        scale: 0.96,
                       }}
                       className="
-                        group
-                        relative
-                        overflow-hidden
+                        flex
+                        items-center
+                        gap-2
                         rounded-full
                         bg-[#2563EB]
-                        px-7
-                        py-3.5
+                        px-6
+                        py-3
                         text-sm
                         font-semibold
                         text-white
-                        shadow-[0_15px_40px_rgba(37,99,235,0.35)]
+                        shadow-[0_12px_35px_rgba(37,99,235,0.35)]
                       "
                     >
-                      <span
-                        className="
-                          relative
-                          z-10
-                          flex
-                          items-center
-                          gap-3
-                        "
-                      >
-                        Apply Now
+                      Apply Now
 
-                        <ArrowRight
-                          size={16}
-                          className="
-                            transition-transform
-                            duration-300
-                            group-hover:translate-x-1
-                          "
-                        />
-                      </span>
+                      <ArrowRight
+                        size={16}
+                      />
                     </motion.div>
                   </Link>
-                </div>
 
-                {/* MOBILE BUTTON */}
-                <motion.button
-                  whileTap={{
-                    scale: 0.92,
-                  }}
-                  whileHover={{
-                    rotate: 3,
-                  }}
-                  onClick={() =>
-                    setMenuOpen(true)
-                  }
-                  className="
-                    relative
-                    flex
-                    h-11
-                    w-11
-                    items-center
-                    justify-center
-                    overflow-hidden
-                    rounded-2xl
-                    border
-                    border-white/10
-                    bg-white/[0.05]
-                    text-white
-                    backdrop-blur-xl
-                    lg:hidden
-                  "
-                >
-                  <Menu size={22} />
-                </motion.button>
+                  {/* MOBILE BTN */}
+                  <motion.button
+                    whileTap={{
+                      scale: 0.92,
+                    }}
+                    onClick={() =>
+                      setMenuOpen(true)
+                    }
+                    className="
+                      flex
+                      h-11
+                      w-11
+                      items-center
+                      justify-center
+                      rounded-2xl
+                      border
+                      border-white/10
+                      bg-white/[0.05]
+                      text-white
+                      backdrop-blur-xl
+                      lg:hidden
+                    "
+                  >
+                    <Menu size={21} />
+                  </motion.button>
+                </div>
               </motion.div>
             </div>
           </motion.div>
         </div>
-      </motion.header>
+      </header>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
@@ -501,7 +503,7 @@ export default function Navbar() {
                 fixed
                 inset-0
                 z-[60]
-                bg-[#020617]/70
+                bg-[#020617]/80
                 backdrop-blur-md
               "
             />
@@ -511,33 +513,31 @@ export default function Navbar() {
               initial={{
                 opacity: 0,
                 y: -40,
-                scale: 0.96,
               }}
               animate={{
                 opacity: 1,
                 y: 0,
-                scale: 1,
               }}
               exit={{
                 opacity: 0,
                 y: -40,
-                scale: 0.96,
               }}
               transition={{
-                duration: 0.45,
+                duration: 0.4,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="
                 fixed
-                top-3
                 left-3
                 right-3
+                top-3
                 z-[70]
                 overflow-hidden
-                rounded-[32px]
+                rounded-[30px]
                 border
                 border-white/10
-                bg-[#0F172A]/94
+                bg-[#0F172A]/95
+                shadow-[0_25px_80px_rgba(0,0,0,0.45)]
                 backdrop-blur-2xl
               "
             >
@@ -600,21 +600,26 @@ export default function Navbar() {
               {/* LINKS */}
               <div
                 className="
+                  space-y-2
                   px-5
-                  py-8
+                  py-6
                 "
               >
-                <div className="space-y-2">
-                  {navLinks.map(
-                    (
-                      item,
-                      index
-                    ) => (
+                {navLinks.map(
+                  (
+                    item,
+                    index
+                  ) => {
+                    const isActive =
+                      location.pathname ===
+                      item.path;
+
+                    return (
                       <motion.div
                         key={item.name}
                         initial={{
                           opacity: 0,
-                          x: -30,
+                          x: -20,
                         }}
                         animate={{
                           opacity: 1,
@@ -630,26 +635,59 @@ export default function Navbar() {
                           onClick={() =>
                             setMenuOpen(false)
                           }
-                          className="
+                          className={`
                             group
+                            relative
                             flex
                             items-center
                             justify-between
+                            overflow-hidden
                             rounded-2xl
-                            border
-                            border-transparent
-                            bg-white/[0.03]
                             px-5
                             py-4
-                            text-white/80
                             transition-all
                             duration-300
-                            hover:border-white/10
-                            hover:bg-white/[0.06]
-                          "
+
+                            ${
+                              isActive
+                                ? `
+                                  border
+                                  border-white/10
+                                  bg-white/[0.08]
+                                  text-white
+                                `
+                                : `
+                                  bg-white/[0.03]
+                                  text-white/75
+                                  hover:bg-white/[0.06]
+                                `
+                            }
+                          `}
                         >
+                          {/* LIGHT */}
+                          <div
+                            className="
+                              absolute
+                              inset-0
+                              opacity-0
+                              transition-opacity
+                              duration-300
+                              group-hover:opacity-100
+                            "
+                          >
+                            <div
+                              className="
+                                absolute
+                                inset-0
+                                bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_60%)]
+                              "
+                            />
+                          </div>
+
                           <span
                             className="
+                              relative
+                              z-10
                               text-lg
                               font-medium
                             "
@@ -660,16 +698,15 @@ export default function Navbar() {
                           <ArrowRight
                             size={18}
                             className="
-                              transition-transform
-                              duration-300
-                              group-hover:translate-x-1
+                              relative
+                              z-10
                             "
                           />
                         </Link>
                       </motion.div>
-                    )
-                  )}
-                </div>
+                    );
+                  }
+                )}
               </div>
             </motion.div>
           </>

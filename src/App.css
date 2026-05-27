@@ -19,3 +19,14 @@ body {
     color 0.35s ease,
     box-shadow 0.35s ease;
 }
+
+@media (min-width: 1024px) {
+  body {
+    cursor: none;
+  }
+
+  a,
+  button {
+    cursor: none;
+  }
+}

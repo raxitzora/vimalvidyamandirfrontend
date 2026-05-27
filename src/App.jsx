@@ -5,6 +5,7 @@ import {
   Route,
 } from "react-router-dom";
 import ScrollToTop from "./components/common/ScrollToTop";
+import CustomCursor from "./components/common/CustomCursor";
 
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
@@ -16,6 +17,7 @@ import ContactPage from "./pages/ContactPage";
 function App() {
   return (
     <>
+    <CustomCursor />
     <ScrollToTop />
     <Routes>
       <Route
