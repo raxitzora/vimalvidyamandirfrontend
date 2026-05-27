@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 
 import {
   ArrowRight,
+  Bot,
   HeartHandshake,
   ShieldCheck,
-  Bot,
 } from "lucide-react";
+
+/* CONTENT */
 
 const values = [
   "Child-Centered Learning",
@@ -20,28 +22,63 @@ const questions = [
   "Learning Environment",
 ];
 
+const chats = [
+  {
+    type: "user",
+    text: "What activities are available for students?",
+  },
+
+  {
+    type: "bot",
+    text: "Students participate in cultural activities, celebrations, teamwork, creative learning, and activity-based classroom experiences throughout the academic year.",
+  },
+
+  {
+    type: "user",
+    text: "How can I apply for admission?",
+  },
+
+  {
+    type: "bot",
+    text: "You can visit the admission section or contact the school directly to receive complete guidance about the application process.",
+  },
+];
+
+/* REUSABLE ANIMATION */
+
+const fadeUp = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+
+  whileInView: {
+    opacity: 1,
+    y: 0,
+  },
+
+  viewport: {
+    once: true,
+  },
+};
+
 export default function Message() {
   return (
     <section
       className="
         relative
         overflow-hidden
-
         bg-[#0F172A]
+        py-24
 
-        pt-24
-        pb-28
-
-        sm:pt-28
-        sm:pb-36
+        sm:py-32
       "
     >
-      {/* ATMOSPHERIC BACKGROUND */}
+      {/* ATMOSPHERE */}
       <div
         className="
           absolute
           inset-0
-
           bg-[radial-gradient(circle_at_top_left,rgba(198,165,106,0.12),transparent_30%)]
         "
       />
@@ -50,7 +87,6 @@ export default function Message() {
         className="
           absolute
           inset-0
-
           bg-[linear-gradient(to_bottom,rgba(15,23,42,0.2),transparent,rgba(15,23,42,0.55))]
         "
       />
@@ -61,59 +97,41 @@ export default function Message() {
           absolute
           right-[-120px]
           top-[-120px]
-
           h-[380px]
           w-[380px]
-
           rounded-full
-
           bg-[#C6A56A]/10
-
           blur-3xl
         "
       />
 
+      {/* MAIN */}
       <div
         className="
           relative
           z-10
-
           mx-auto
           max-w-7xl
-
           px-5
 
           sm:px-8
-
           lg:px-12
         "
       >
-        {/* TRUSTEE SECTION */}
+        {/* TRUSTEE */}
         <div
           className="
             grid
             items-center
-
             gap-16
 
-            xl:grid-cols-[0.92fr_1fr]
-
             lg:gap-24
+            xl:grid-cols-[0.92fr_1fr]
           "
         >
           {/* IMAGE */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            {...fadeUp}
             transition={{
               duration: 0.9,
             }}
@@ -124,9 +142,7 @@ export default function Message() {
               className="
                 relative
                 overflow-hidden
-
                 rounded-[40px]
-
                 shadow-[0_30px_80px_rgba(0,0,0,0.35)]
               "
             >
@@ -147,7 +163,6 @@ export default function Message() {
                 className="
                   absolute
                   inset-0
-
                   bg-gradient-to-t
                   from-[#020617]/75
                   via-[#020617]/10
@@ -159,20 +174,14 @@ export default function Message() {
               <div
                 className="
                   absolute
-
                   bottom-5
                   left-5
                   right-5
-
                   rounded-[28px]
-
                   border
                   border-white/10
-
                   bg-[#020617]/45
-
                   p-5
-
                   backdrop-blur-xl
 
                   sm:bottom-6
@@ -184,61 +193,41 @@ export default function Message() {
                   className="
                     text-sm
                     leading-7
-
                     text-slate-100
 
                     sm:text-[15px]
                   "
                 >
-                  “Every child deserves a
-                  caring environment where
-                  they feel inspired,
-                  respected, supported, and
-                  encouraged to grow with
-                  confidence.”
+                  “Every child deserves a caring environment where they feel inspired, respected, supported, and encouraged to grow with confidence.”
                 </p>
               </div>
             </div>
 
-            {/* FLOATING STAT */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 6,
-              }}
+            {/* STAT */}
+            <div
               className="
                 absolute
                 -right-10
                 top-10
-
                 hidden
-                lg:block
-
                 rounded-[28px]
-
                 border
                 border-white/10
-
                 bg-white/[0.05]
-
                 p-6
-
                 backdrop-blur-xl
-
                 shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+
+                lg:block
               "
             >
               <p
                 className="
                   text-[11px]
+                  font-semibold
                   uppercase
                   tracking-[0.2em]
-
                   text-slate-400
-                  font-semibold
                 "
               >
                 Educational Vision
@@ -247,10 +236,8 @@ export default function Message() {
               <h3
                 className="
                   mt-3
-
                   text-5xl
                   font-semibold
-
                   text-white
                 "
               >
@@ -260,36 +247,20 @@ export default function Message() {
               <p
                 className="
                   mt-3
-
                   max-w-[180px]
-
                   text-sm
                   leading-6
-
                   text-slate-300
                 "
               >
-                Years dedicated to
-                nurturing children through
-                values, learning, and
-                meaningful education.
+                Years dedicated to nurturing children through values, learning, and meaningful education.
               </p>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* CONTENT */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            {...fadeUp}
             transition={{
               duration: 0.9,
             }}
@@ -300,17 +271,12 @@ export default function Message() {
                 inline-flex
                 items-center
                 gap-2
-
                 rounded-full
-
                 border
                 border-white/10
-
                 bg-white/[0.05]
-
                 px-4
                 py-2
-
                 backdrop-blur-md
               "
             >
@@ -324,11 +290,10 @@ export default function Message() {
               <span
                 className="
                   text-[11px]
+                  font-medium
                   uppercase
                   tracking-[0.2em]
-
                   text-slate-300
-                  font-medium
                 "
               >
                 Leadership & Vision
@@ -339,72 +304,52 @@ export default function Message() {
             <h2
               className="
                 mt-7
-
                 text-[2.8rem]
+                font-semibold
                 leading-[0.96]
                 tracking-tight
-
                 text-white
-                font-semibold
 
                 sm:text-[4rem]
 
                 lg:text-[5rem]
               "
             >
-              A School
-              Built On
-              Care, Values
-              & Meaningful
-              Education
+              A School Built On Care, Values & Meaningful Education
             </h2>
 
             {/* TEXT */}
-            <p
+            <div
               className="
                 mt-7
-
                 max-w-xl
-
-                text-[17px]
-                leading-8
-
-                text-slate-300
-
-                sm:text-[18px]
+                space-y-6
               "
             >
-              At Shree Vimal Vidya
-              Mandir, we believe
-              education should help
-              children become confident,
-              compassionate, disciplined,
-              and future-ready
-              individuals.
-            </p>
+              <p
+                className="
+                  text-[17px]
+                  leading-8
+                  text-slate-300
 
-            <p
-              className="
-                mt-6
+                  sm:text-[18px]
+                "
+              >
+                At Shree Vimal Vidya Mandir, we believe education should help children become confident, compassionate, disciplined, and future-ready individuals.
+              </p>
 
-                max-w-xl
+              <p
+                className="
+                  text-[17px]
+                  leading-8
+                  text-slate-300
 
-                text-[17px]
-                leading-8
-
-                text-slate-300
-
-                sm:text-[18px]
-              "
-            >
-              Our mission is to create a
-              safe and inspiring
-              environment where every
-              child receives meaningful
-              guidance, personal
-              attention, and joyful
-              learning experiences.
-            </p>
+                  sm:text-[18px]
+                "
+              >
+                Our mission is to create a safe and inspiring environment where every child receives meaningful guidance, personal attention, and joyful learning experiences.
+              </p>
+            </div>
 
             {/* VALUES */}
             <div
@@ -419,18 +364,8 @@ export default function Message() {
                   index
                 ) => (
                   <motion.div
-                    key={index}
-                    initial={{
-                      opacity: 0,
-                      x: -20,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
+                    key={item}
+                    {...fadeUp}
                     transition={{
                       delay:
                         index * 0.08,
@@ -446,17 +381,12 @@ export default function Message() {
                         flex
                         h-11
                         w-11
-
                         items-center
                         justify-center
-
                         rounded-xl
-
                         border
                         border-white/10
-
                         bg-white/[0.05]
-
                         backdrop-blur-md
                       "
                     >
@@ -472,7 +402,6 @@ export default function Message() {
                       className="
                         text-[15px]
                         font-medium
-
                         text-slate-100
 
                         sm:text-[16px]
@@ -491,31 +420,19 @@ export default function Message() {
         <div
           className="
             mt-28
-
             grid
             items-center
-
             gap-16
-
-            xl:grid-cols-[0.9fr_1fr]
 
             lg:mt-36
             lg:gap-24
+
+            xl:grid-cols-[0.9fr_1fr]
           "
         >
           {/* LEFT */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            {...fadeUp}
             transition={{
               duration: 0.9,
             }}
@@ -526,17 +443,12 @@ export default function Message() {
                 inline-flex
                 items-center
                 gap-2
-
                 rounded-full
-
                 border
                 border-white/10
-
                 bg-white/[0.05]
-
                 px-4
                 py-2
-
                 backdrop-blur-md
               "
             >
@@ -550,11 +462,10 @@ export default function Message() {
               <span
                 className="
                   text-[11px]
+                  font-medium
                   uppercase
                   tracking-[0.2em]
-
                   text-slate-300
-                  font-medium
                 "
               >
                 Parent Support Assistant
@@ -565,52 +476,39 @@ export default function Message() {
             <h2
               className="
                 mt-7
-
                 text-[2.8rem]
+                font-semibold
                 leading-[0.96]
                 tracking-tight
-
                 text-white
-                font-semibold
 
                 sm:text-[4rem]
 
                 lg:text-[4.8rem]
               "
             >
-              Friendly
-              Guidance
-              For Parents
+              Friendly Guidance For Parents
             </h2>
 
             {/* TEXT */}
             <p
               className="
                 mt-7
-
                 max-w-lg
-
                 text-[17px]
                 leading-8
-
                 text-slate-300
 
                 sm:text-[18px]
               "
             >
-              Parents can quickly ask
-              about admissions, school
-              timings, activities,
-              facilities, and educational
-              environment through our
-              helpful school assistant.
+              Parents can quickly ask about admissions, school timings, activities, facilities, and educational environment through our helpful school assistant.
             </p>
 
             {/* QUESTIONS */}
             <div
               className="
                 mt-10
-
                 flex
                 flex-wrap
                 gap-3
@@ -618,25 +516,19 @@ export default function Message() {
             >
               {questions.map(
                 (
-                  item,
-                  index
+                  item
                 ) => (
                   <div
-                    key={index}
+                    key={item}
                     className="
                       rounded-full
-
                       border
                       border-white/10
-
                       bg-white/[0.05]
-
                       px-4
                       py-2.5
-
                       text-sm
                       font-medium
-
                       text-slate-200
                     "
                   >
@@ -647,34 +539,19 @@ export default function Message() {
             </div>
           </motion.div>
 
-          {/* CHAT */}
+          {/* CHAT UI */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 50,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            {...fadeUp}
             transition={{
               duration: 1,
             }}
             className="
               rounded-[40px]
-
               border
               border-white/10
-
               bg-white/[0.04]
-
               p-5
-
               backdrop-blur-xl
-
               shadow-[0_30px_80px_rgba(0,0,0,0.22)]
 
               sm:p-7
@@ -686,10 +563,8 @@ export default function Message() {
                 flex
                 items-center
                 gap-4
-
                 border-b
                 border-white/10
-
                 pb-5
               "
             >
@@ -698,12 +573,9 @@ export default function Message() {
                   flex
                   h-12
                   w-12
-
                   items-center
                   justify-center
-
                   rounded-2xl
-
                   bg-[#C6A56A]/15
                 "
               >
@@ -731,147 +603,80 @@ export default function Message() {
                     text-slate-400
                   "
                 >
-                  Helpful guidance for
-                  parents
+                  Helpful guidance for parents
                 </p>
               </div>
             </div>
 
-            {/* CHAT BODY */}
+            {/* CHAT */}
             <div
               className="
                 mt-6
                 space-y-5
               "
             >
-              {/* USER */}
-              <div className="flex justify-end">
-                <div
-                  className="
-                    max-w-[80%]
+              {chats.map(
+                (
+                  chat,
+                  index
+                ) => {
+                  const isUser =
+                    chat.type ===
+                    "user";
 
-                    rounded-[24px]
-                    rounded-br-md
+                  return (
+                    <div
+                      key={index}
+                      className={`flex ${
+                        isUser
+                          ? "justify-end"
+                          : "justify-start"
+                      }`}
+                    >
+                      <div
+                        className={`
+                          max-w-[85%]
+                          rounded-[24px]
+                          px-5
+                          py-4
+                          text-sm
+                          leading-7
 
-                    bg-[#C6A56A]
-
-                    px-5
-                    py-4
-
-                    text-sm
-                    leading-7
-
-                    text-[#0F172A]
-                    font-medium
-                  "
-                >
-                  What activities are
-                  available for students?
-                </div>
-              </div>
-
-              {/* BOT */}
-              <div className="flex justify-start">
-                <div
-                  className="
-                    max-w-[85%]
-
-                    rounded-[24px]
-                    rounded-bl-md
-
-                    bg-white/[0.05]
-
-                    px-5
-                    py-4
-
-                    text-sm
-                    leading-7
-
-                    text-slate-300
-                  "
-                >
-                  Students participate in
-                  cultural activities,
-                  celebrations, teamwork,
-                  creative learning, and
-                  activity-based classroom
-                  experiences throughout
-                  the academic year.
-                </div>
-              </div>
-
-              {/* USER */}
-              <div className="flex justify-end">
-                <div
-                  className="
-                    max-w-[80%]
-
-                    rounded-[24px]
-                    rounded-br-md
-
-                    bg-[#C6A56A]
-
-                    px-5
-                    py-4
-
-                    text-sm
-                    leading-7
-
-                    text-[#0F172A]
-                    font-medium
-                  "
-                >
-                  How can I apply for
-                  admission?
-                </div>
-              </div>
-
-              {/* BOT */}
-              <div className="flex justify-start">
-                <div
-                  className="
-                    max-w-[85%]
-
-                    rounded-[24px]
-                    rounded-bl-md
-
-                    bg-white/[0.05]
-
-                    px-5
-                    py-4
-
-                    text-sm
-                    leading-7
-
-                    text-slate-300
-                  "
-                >
-                  You can visit the
-                  admission section or
-                  contact the school
-                  directly to receive
-                  complete guidance about
-                  the application process.
-                </div>
-              </div>
+                          ${
+                            isUser
+                              ? `
+                                rounded-br-md
+                                bg-[#C6A56A]
+                                font-medium
+                                text-[#0F172A]
+                              `
+                              : `
+                                rounded-bl-md
+                                bg-white/[0.05]
+                                text-slate-300
+                              `
+                          }
+                        `}
+                      >
+                        {chat.text}
+                      </div>
+                    </div>
+                  );
+                }
+              )}
             </div>
 
             {/* INPUT */}
             <div
               className="
                 mt-6
-
                 flex
                 items-center
                 justify-between
-
                 rounded-full
-
                 border
                 border-white/10
-
                 bg-white/[0.04]
-
                 px-5
                 py-4
               "
@@ -882,8 +687,7 @@ export default function Message() {
                   text-slate-400
                 "
               >
-                Ask about admissions,
-                timings, activities...
+                Ask about admissions, timings, activities...
               </p>
 
               <button
@@ -891,14 +695,10 @@ export default function Message() {
                   flex
                   h-11
                   w-11
-
                   items-center
                   justify-center
-
                   rounded-full
-
                   bg-[#C6A56A]
-
                   shadow-[0_10px_30px_rgba(0,0,0,0.25)]
                 "
               >

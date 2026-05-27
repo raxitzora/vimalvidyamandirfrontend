@@ -2,20 +2,24 @@ import { motion } from "framer-motion";
 
 import {
   ArrowRight,
-  Sparkles,
   ShieldCheck,
+  Sparkles,
   HeartHandshake,
 } from "lucide-react";
+
+/* CONTENT */
 
 const values = [
   {
     icon: Sparkles,
     title: "Creative Exploration",
   },
+
   {
     icon: ShieldCheck,
     title: "Safe Learning Environment",
   },
+
   {
     icon: HeartHandshake,
     title:
@@ -24,10 +28,39 @@ const values = [
 ];
 
 const galleryImages = [
-  "/images/talent-2.jpg",
-  "/images/talent-3.jpg",
-  "/images/talent-4.jpg",
+  {
+    src: "/images/talent-2.jpg",
+    height: "h-[340px]",
+  },
+
+  {
+    src: "/images/talent-3.jpg",
+    height: "h-[420px]",
+  },
+
+  {
+    src: "/images/talent-4.jpg",
+    height: "h-[340px]",
+  },
 ];
+
+/* REUSABLE ANIMATION */
+
+const fadeUp = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+
+  whileInView: {
+    opacity: 1,
+    y: 0,
+  },
+
+  viewport: {
+    once: true,
+  },
+};
 
 export default function Talent() {
   return (
@@ -35,22 +68,17 @@ export default function Talent() {
       className="
         relative
         overflow-hidden
-
         bg-[#1E293B]
+        py-20
 
-        pt-20
-        pb-24
-
-        sm:pt-24
-        sm:pb-32
+        sm:py-28
       "
     >
-      {/* ATMOSPHERIC LAYERS */}
+      {/* ATMOSPHERE */}
       <div
         className="
           absolute
           inset-0
-
           bg-[radial-gradient(circle_at_top_right,rgba(198,165,106,0.12),transparent_28%)]
         "
       />
@@ -59,70 +87,51 @@ export default function Talent() {
         className="
           absolute
           inset-0
-
           bg-[linear-gradient(to_bottom,rgba(15,23,42,0.2),transparent,rgba(15,23,42,0.35))]
         "
       />
 
-      {/* CINEMATIC GLOW */}
+      {/* GLOW */}
       <div
         className="
           absolute
           -top-40
           right-[-120px]
-
           h-[380px]
           w-[380px]
-
           rounded-full
-
           bg-[#C6A56A]/15
-
           blur-3xl
         "
       />
 
+      {/* MAIN */}
       <div
         className="
           relative
           z-10
-
           mx-auto
           max-w-7xl
-
           px-5
 
           sm:px-8
-
           lg:px-12
         "
       >
-        {/* TOP SECTION */}
+        {/* TOP */}
         <div
           className="
             grid
             items-center
-
             gap-14
 
-            xl:grid-cols-[0.95fr_1fr]
-
             lg:gap-20
+            xl:grid-cols-[0.95fr_1fr]
           "
         >
-          {/* LEFT CONTENT */}
+          {/* LEFT */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            {...fadeUp}
             transition={{
               duration: 0.8,
             }}
@@ -133,17 +142,12 @@ export default function Talent() {
                 inline-flex
                 items-center
                 gap-2
-
                 rounded-full
-
                 border
                 border-white/10
-
                 bg-white/[0.04]
-
                 px-4
                 py-2
-
                 backdrop-blur-md
               "
             >
@@ -152,7 +156,6 @@ export default function Talent() {
                   h-2
                   w-2
                   rounded-full
-
                   bg-[#C6A56A]
                 "
               />
@@ -160,11 +163,10 @@ export default function Talent() {
               <span
                 className="
                   text-[11px]
+                  font-medium
                   uppercase
                   tracking-[0.2em]
-
                   text-slate-300
-                  font-medium
                 "
               >
                 Beyond Academics
@@ -175,120 +177,96 @@ export default function Talent() {
             <h2
               className="
                 mt-7
-
                 max-w-2xl
-
                 text-[2.8rem]
+                font-semibold
                 leading-[0.96]
                 tracking-tight
-
                 text-[#F8FAFC]
-                font-semibold
 
                 sm:text-[4rem]
 
                 lg:text-[5rem]
               "
             >
-              Every Child
-              Deserves To Feel
-              Inspired,
-              Encouraged
-              & Confident
+              Every Child Deserves To Feel Inspired, Encouraged & Confident
             </h2>
 
             {/* DESCRIPTION */}
             <p
               className="
                 mt-7
-
                 max-w-lg
-
                 text-[17px]
                 leading-8
-
                 text-slate-300
 
                 sm:text-[18px]
               "
             >
-              We believe meaningful
-              education happens when
-              children are encouraged to
-              explore, participate,
-              create, pray, collaborate,
-              and grow with confidence in
-              a caring environment.
+              We believe meaningful education happens when children are encouraged to explore, participate, create, pray, collaborate, and grow with confidence in a caring environment.
             </p>
 
             {/* VALUES */}
             <div className="mt-10 space-y-5">
               {values.map(
-                (item, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{
-                      opacity: 0,
-                      x: -20,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                    transition={{
-                      delay:
-                        index * 0.08,
-                    }}
-                    className="
-                      flex
-                      items-center
-                      gap-4
-                    "
-                  >
-                    <div
+                (
+                  item,
+                  index
+                ) => {
+                  const Icon =
+                    item.icon;
+
+                  return (
+                    <motion.div
+                      key={item.title}
+                      {...fadeUp}
+                      transition={{
+                        delay:
+                          index * 0.08,
+                      }}
                       className="
                         flex
-                        h-11
-                        w-11
-
                         items-center
-                        justify-center
-
-                        rounded-xl
-
-                        border
-                        border-white/10
-
-                        bg-white/[0.04]
-
-                        backdrop-blur-md
+                        gap-4
                       "
                     >
-                      <item.icon
-                        size={18}
+                      <div
                         className="
-                          text-[#E2C48D]
+                          flex
+                          h-11
+                          w-11
+                          items-center
+                          justify-center
+                          rounded-xl
+                          border
+                          border-white/10
+                          bg-white/[0.04]
+                          backdrop-blur-md
                         "
-                      />
-                    </div>
+                      >
+                        <Icon
+                          size={18}
+                          className="
+                            text-[#E2C48D]
+                          "
+                        />
+                      </div>
 
-                    <p
-                      className="
-                        text-[15px]
-                        font-medium
+                      <p
+                        className="
+                          text-[15px]
+                          font-medium
+                          text-slate-100
 
-                        text-slate-100
-
-                        sm:text-[16px]
-                      "
-                    >
-                      {item.title}
-                    </p>
-                  </motion.div>
-                )
+                          sm:text-[16px]
+                        "
+                      >
+                        {item.title}
+                      </p>
+                    </motion.div>
+                  );
+                }
               )}
             </div>
 
@@ -303,30 +281,22 @@ export default function Talent() {
               }}
               className="
                 mt-10
-
                 inline-flex
                 w-full
-
                 items-center
                 justify-center
                 gap-3
-
                 rounded-full
-
                 bg-[#C6A56A]
-
                 px-7
                 py-4
-
-                text-[#0F172A]
                 font-semibold
-
+                text-[#0F172A]
+                shadow-[0_15px_40px_rgba(0,0,0,0.18)]
                 transition-all
                 duration-300
 
                 hover:bg-[#E2C48D]
-
-                shadow-[0_15px_40px_rgba(0,0,0,0.18)]
 
                 sm:w-auto
               "
@@ -341,36 +311,24 @@ export default function Talent() {
 
           {/* RIGHT IMAGE */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 50,
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0,
-            }}
-            viewport={{
-              once: true,
-            }}
+            {...fadeUp}
             transition={{
-              duration: 1,
+              duration: 0.9,
             }}
             className="relative"
           >
-            {/* MAIN IMAGE */}
             <div
               className="
                 relative
                 overflow-hidden
-
                 rounded-[40px]
-
                 shadow-[0_30px_80px_rgba(0,0,0,0.28)]
               "
             >
+              {/* MAIN IMAGE */}
               <img
                 src="/images/talent-main.jpg"
-                alt="talent.jpg"
+                alt="Students learning"
                 className="
                   h-[420px]
                   w-full
@@ -380,12 +338,11 @@ export default function Talent() {
                 "
               />
 
-              {/* CINEMATIC OVERLAY */}
+              {/* OVERLAY */}
               <div
                 className="
                   absolute
                   inset-0
-
                   bg-gradient-to-t
                   from-[#0F172A]/70
                   via-[#0F172A]/15
@@ -397,20 +354,14 @@ export default function Talent() {
               <div
                 className="
                   absolute
-
                   bottom-5
                   left-5
                   right-5
-
                   rounded-[28px]
-
                   border
                   border-white/10
-
                   bg-[#0F172A]/45
-
                   p-5
-
                   backdrop-blur-xl
 
                   sm:bottom-6
@@ -421,67 +372,49 @@ export default function Talent() {
                 <p
                   className="
                     text-sm
-                    leading-7
-
-                    text-slate-100
                     font-medium
+                    leading-7
+                    text-slate-100
 
                     sm:text-[15px]
                   "
                 >
-                  “Education is not only
-                  about academic success,
-                  but about nurturing
-                  confidence, kindness,
-                  creativity, and joyful
-                  learning experiences.”
+                  “Education is not only about academic success, but about nurturing confidence, kindness, creativity, and joyful learning experiences.”
                 </p>
               </div>
             </div>
 
-            {/* FLOATING IMAGE */}
-            <motion.div
-              animate={{
-                y: [0, -10, 0],
-              }}
-              transition={{
-                repeat: Infinity,
-                duration: 6,
-              }}
+            {/* SIDE IMAGE */}
+            <div
               className="
                 absolute
                 -left-10
                 bottom-10
-
                 hidden
-                lg:block
-
                 w-[180px]
-
                 overflow-hidden
-
                 rounded-[28px]
-
                 border
                 border-white/10
-
                 shadow-[0_20px_60px_rgba(0,0,0,0.25)]
+
+                lg:block
               "
             >
               <img
                 src="/images/talent-side.jpg"
-                alt="talent-side.jpg"
+                alt="Student activity"
                 className="
                   h-[240px]
                   w-full
                   object-cover
                 "
               />
-            </motion.div>
+            </div>
           </motion.div>
         </div>
 
-        {/* STORY SECTION */}
+        {/* STORY */}
         <div className="mt-24 sm:mt-32">
           <div
             className="
@@ -494,17 +427,7 @@ export default function Talent() {
           >
             {/* BIG IMAGE */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+              {...fadeUp}
               transition={{
                 duration: 0.9,
               }}
@@ -512,19 +435,16 @@ export default function Talent() {
                 group
                 relative
                 overflow-hidden
-
                 rounded-[40px]
               "
             >
               <img
                 src="/images/talent-1.jpg"
-                alt="talent-1.jpg"
+                alt="Activity based learning"
                 className="
                   h-[460px]
                   w-full
-
                   object-cover
-
                   transition-transform
                   duration-700
                   ease-[cubic-bezier(0.22,1,0.36,1)]
@@ -540,7 +460,6 @@ export default function Talent() {
                 className="
                   absolute
                   inset-0
-
                   bg-gradient-to-t
                   from-[#0F172A]/70
                   via-transparent
@@ -562,7 +481,6 @@ export default function Talent() {
                     text-xs
                     uppercase
                     tracking-[0.2em]
-
                     text-white/70
                   "
                 >
@@ -572,50 +490,32 @@ export default function Talent() {
                 <h3
                   className="
                     mt-3
-
                     text-3xl
                     font-semibold
                     leading-tight
-
                     text-white
 
                     sm:text-4xl
                   "
                 >
-                  Learning Through
-                  Participation,
-                  Curiosity & Joy
+                  Learning Through Participation, Curiosity & Joy
                 </h3>
               </div>
             </motion.div>
 
             {/* TEXT PANEL */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
-              viewport={{
-                once: true,
-              }}
+              {...fadeUp}
               transition={{
                 duration: 0.9,
                 delay: 0.1,
               }}
               className="
                 rounded-[36px]
-
                 border
                 border-white/10
-
                 bg-white/[0.04]
-
                 p-8
-
                 backdrop-blur-xl
               "
             >
@@ -625,7 +525,6 @@ export default function Talent() {
                   font-semibold
                   uppercase
                   tracking-[0.2em]
-
                   text-[#E2C48D]
                 "
               >
@@ -635,38 +534,26 @@ export default function Talent() {
               <h3
                 className="
                   mt-5
-
                   text-4xl
                   font-semibold
                   leading-tight
-
                   text-white
 
                   lg:text-5xl
                 "
               >
-                Helping Students
-                Build Confidence
-                Through Experience
+                Helping Students Build Confidence Through Experience
               </h3>
 
               <p
                 className="
                   mt-6
-
                   text-[17px]
                   leading-8
-
                   text-slate-300
                 "
               >
-                Through celebrations,
-                teamwork, activities,
-                creativity, and student
-                participation, children
-                gradually grow into
-                confident and compassionate
-                individuals.
+                Through celebrations, teamwork, activities, creativity, and student participation, children gradually grow into confident and compassionate individuals.
               </p>
             </motion.div>
           </div>
@@ -675,16 +562,11 @@ export default function Talent() {
           <div
             className="
               mt-6
-
               rounded-[40px]
-
               border
               border-white/10
-
               bg-white/[0.03]
-
               p-4
-
               backdrop-blur-xl
 
               sm:p-6
@@ -708,17 +590,7 @@ export default function Talent() {
                 ) => (
                   <motion.div
                     key={index}
-                    initial={{
-                      opacity: 0,
-                      y: 30,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      y: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
+                    {...fadeUp}
                     transition={{
                       delay:
                         index * 0.08,
@@ -726,28 +598,22 @@ export default function Talent() {
                     className="
                       group
                       overflow-hidden
-
                       rounded-[32px]
                     "
                   >
                     <img
-                      src={image}
+                      src={image.src}
                       alt=""
                       className={`
                         w-full
                         object-cover
-
                         transition-transform
                         duration-700
                         ease-[cubic-bezier(0.22,1,0.36,1)]
 
                         group-hover:scale-105
 
-                        ${
-                          index === 1
-                            ? "h-[420px]"
-                            : "h-[340px]"
-                        }
+                        ${image.height}
                       `}
                     />
                   </motion.div>

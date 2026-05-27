@@ -12,21 +12,62 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+/* CONTENT */
+
+const trustItems = [
+  "Activity Based Learning",
+  "Safe Environment",
+  "Holistic Development",
+];
+
+const infoCards = [
+  {
+    icon: GraduationCap,
+    title: "Learning Beyond Books",
+    description:
+      "We nurture confidence, creativity, discipline, and meaningful growth through modern educational experiences.",
+
+    iconBg: "bg-blue-500/15",
+    iconColor: "text-blue-400",
+    cardBg: "bg-white/[0.04]",
+  },
+
+  {
+    icon: ShieldCheck,
+    title: "Safe & Caring Environment",
+    description:
+      "Every child receives personal attention in a warm and supportive educational atmosphere.",
+
+    iconBg: "bg-[#D6B06B]/20",
+    iconColor: "text-[#D6B06B]",
+    cardBg: "bg-[#D6B06B]/10",
+  },
+];
+
+/* REUSABLE ANIMATION */
+
+const fadeUp = {
+  initial: {
+    opacity: 0,
+    y: 30,
+  },
+
+  animate: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 export default function Hero() {
-  const { scrollYProgress } = useScroll();
+  const { scrollYProgress } =
+    useScroll();
 
-  // VIDEO PARALLAX ONLY
+  /* LIGHTWEIGHT VIDEO SCALE */
+
   const videoScale = useTransform(
     scrollYProgress,
     [0, 1],
-    [1, 1.12]
-  );
-
-  const videoY = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, 120]
+    [1, 1.08]
   );
 
   return (
@@ -34,27 +75,28 @@ export default function Hero() {
       id="home"
       className="
         relative
-        min-h-[100svh]
+        min-h-screen
+        overflow-hidden
+        bg-[#0F172A]
         pt-32
         lg:pt-36
-        bg-[#0F172A]
       "
     >
-      {/* VIDEO BACKGROUND */}
+      {/* VIDEO */}
       <motion.video
         style={{
           scale: videoScale,
-          y: videoY,
         }}
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         className="
           absolute
           inset-0
-          w-full
           h-full
+          w-full
           object-cover
           opacity-70
         "
@@ -62,14 +104,12 @@ export default function Hero() {
         <source
           src="/videos/heroVideo.mp4"
           type="video/mp4"
-          
         />
       </motion.video>
 
-      {/* DARK OVERLAY */}
+      {/* OVERLAYS */}
       <div className="absolute inset-0 bg-[#020617]/55" />
 
-      {/* GRADIENT OVERLAY */}
       <div
         className="
           absolute
@@ -81,35 +121,34 @@ export default function Hero() {
         "
       />
 
-      {/* LIGHT GLOW */}
+      {/* LIGHT */}
       <div
         className="
           absolute
-          top-0
           left-0
-          w-[320px]
+          top-0
           h-[320px]
+          w-[320px]
           rounded-full
           bg-[#2563EB]/15
           blur-3xl
         "
       />
 
-      {/* MAIN CONTENT */}
+      {/* CONTENT */}
       <div
         className="
           relative
           z-10
-          max-w-7xl
           mx-auto
+          flex
+          min-h-[calc(100vh-120px)]
+          max-w-7xl
+          items-center
           px-5
+          pb-20
           sm:px-8
           lg:px-12
-          min-h-[calc(100svh-120px)]
-          flex
-          items-center
-          pb-24
-          lg:pb-10
         "
       >
         <div
@@ -121,18 +160,11 @@ export default function Hero() {
             xl:grid-cols-[1fr_390px]
           "
         >
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div>
             {/* BADGE */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 20,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              {...fadeUp}
               transition={{
                 duration: 0.6,
               }}
@@ -169,14 +201,7 @@ export default function Hero() {
 
             {/* HEADING */}
             <motion.h1
-              initial={{
-                opacity: 0,
-                y: 40,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              {...fadeUp}
               transition={{
                 duration: 0.9,
                 delay: 0.1,
@@ -184,36 +209,25 @@ export default function Hero() {
               className="
                 mt-8
                 max-w-[720px]
-                text-[3.2rem]
+                text-5xl
                 font-bold
                 leading-[0.92]
-                tracking-[-0.04em]
+                tracking-[-0.05em]
                 text-white
 
-                sm:text-[4.5rem]
+                sm:text-7xl
 
                 lg:text-[5.8rem]
 
-                xl:text-[6.3rem]
+                xl:text-[6.2rem]
               "
             >
-              Building
-              Bright Futures
-              Through
-              Meaningful
-              Education
+              Building Bright Futures Through Meaningful Education
             </motion.h1>
 
             {/* DESCRIPTION */}
             <motion.p
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              {...fadeUp}
               transition={{
                 duration: 0.9,
                 delay: 0.2,
@@ -229,23 +243,12 @@ export default function Hero() {
                 sm:leading-9
               "
             >
-              A caring English medium school in
-              Madhavpur Ghed where children
-              learn with confidence, creativity,
-              discipline, and joy from KG to
-              Standard 5.
+              A caring English medium school in Madhavpur Ghed where children learn with confidence, creativity, discipline, and joy from KG to Standard 5.
             </motion.p>
 
-            {/* TRUST PILLS */}
+            {/* TRUST ITEMS */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              {...fadeUp}
               transition={{
                 delay: 0.3,
               }}
@@ -256,43 +259,34 @@ export default function Hero() {
                 gap-3
               "
             >
-              {[
-                "Activity Based Learning",
-                "Safe Environment",
-                "Holistic Development",
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="
-                    rounded-full
-                    border
-                    border-white/10
-                    bg-white/[0.05]
-                    px-4
-                    py-2
-                    text-xs
-                    text-slate-200
-                    backdrop-blur-md
+              {trustItems.map(
+                (item) => (
+                  <div
+                    key={item}
+                    className="
+                      rounded-full
+                      border
+                      border-white/10
+                      bg-white/[0.05]
+                      px-4
+                      py-2
+                      text-xs
+                      text-slate-200
+                      backdrop-blur-md
 
-                    sm:px-5
-                    sm:text-sm
-                  "
-                >
-                  {item}
-                </div>
-              ))}
+                      sm:px-5
+                      sm:text-sm
+                    "
+                  >
+                    {item}
+                  </div>
+                )
+              )}
             </motion.div>
 
             {/* BUTTONS */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
+              {...fadeUp}
               transition={{
                 delay: 0.4,
               }}
@@ -301,11 +295,10 @@ export default function Hero() {
                 flex
                 flex-col
                 gap-4
-
                 md:flex-row
               "
             >
-              {/* PRIMARY BUTTON */}
+              {/* PRIMARY */}
               <motion.button
                 whileHover={{
                   y: -2,
@@ -316,7 +309,6 @@ export default function Hero() {
                 className="
                   group
                   inline-flex
-                  w-full
                   items-center
                   justify-center
                   gap-3
@@ -324,11 +316,9 @@ export default function Hero() {
                   bg-[#2563EB]
                   px-8
                   py-4
-                  text-white
                   font-semibold
+                  text-white
                   shadow-[0_15px_40px_rgba(37,99,235,0.35)]
-
-                  md:w-auto
                 "
               >
                 Apply For Admission
@@ -343,7 +333,7 @@ export default function Hero() {
                 />
               </motion.button>
 
-              {/* SECONDARY BUTTON */}
+              {/* SECONDARY */}
               <motion.button
                 whileHover={{
                   y: -2,
@@ -353,7 +343,6 @@ export default function Hero() {
                 }}
                 className="
                   inline-flex
-                  w-full
                   items-center
                   justify-center
                   gap-3
@@ -363,32 +352,31 @@ export default function Hero() {
                   bg-white/[0.05]
                   px-8
                   py-4
-                  text-white
                   font-semibold
+                  text-white
                   backdrop-blur-md
-
-                  md:w-auto
                 "
               >
                 <Play size={18} />
+
                 Explore School
               </motion.button>
             </motion.div>
           </div>
 
-          {/* RIGHT SIDE CARDS */}
+          {/* RIGHT */}
           <motion.div
             initial={{
               opacity: 0,
-              x: 60,
+              x: 40,
             }}
             animate={{
               opacity: 1,
               x: 0,
             }}
             transition={{
-              duration: 1,
-              delay: 0.4,
+              duration: 0.9,
+              delay: 0.3,
             }}
             className="
               hidden
@@ -397,105 +385,73 @@ export default function Hero() {
               gap-5
             "
           >
-            {/* CARD 1 */}
-            <div
-              className="
-                rounded-3xl
-                border
-                border-white/10
-                bg-white/[0.04]
-                p-7
-                backdrop-blur-xl
-              "
-            >
-              <div
-                className="
-                  flex
-                  h-14
-                  w-14
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-blue-500/15
-                "
-              >
-                <GraduationCap className="text-blue-400" />
-              </div>
+            {infoCards.map(
+              (
+                card,
+                index
+              ) => {
+                const Icon =
+                  card.icon;
 
-              <h3
-                className="
-                  mt-6
-                  text-2xl
-                  font-semibold
-                  text-white
-                "
-              >
-                Learning Beyond Books
-              </h3>
+                return (
+                  <div
+                    key={index}
+                    className={`
+                      rounded-3xl
+                      border
+                      border-white/10
+                      ${card.cardBg}
+                      p-7
+                      backdrop-blur-xl
+                    `}
+                  >
+                    {/* ICON */}
+                    <div
+                      className={`
+                        flex
+                        h-14
+                        w-14
+                        items-center
+                        justify-center
+                        rounded-2xl
+                        ${card.iconBg}
+                      `}
+                    >
+                      <Icon
+                        className={
+                          card.iconColor
+                        }
+                      />
+                    </div>
 
-              <p
-                className="
-                  mt-4
-                  leading-8
-                  text-slate-300
-                "
-              >
-                We nurture confidence,
-                creativity, discipline, and
-                meaningful growth through
-                modern educational experiences.
-              </p>
-            </div>
+                    {/* TITLE */}
+                    <h3
+                      className="
+                        mt-6
+                        text-2xl
+                        font-semibold
+                        text-white
+                      "
+                    >
+                      {card.title}
+                    </h3>
 
-            {/* CARD 2 */}
-            <div
-              className="
-                rounded-3xl
-                border
-                border-white/10
-                bg-[#D6B06B]/10
-                p-7
-                backdrop-blur-xl
-              "
-            >
-              <div
-                className="
-                  flex
-                  h-14
-                  w-14
-                  items-center
-                  justify-center
-                  rounded-2xl
-                  bg-[#D6B06B]/20
-                "
-              >
-                <ShieldCheck className="text-[#D6B06B]" />
-              </div>
-
-              <h3
-                className="
-                  mt-6
-                  text-2xl
-                  font-semibold
-                  text-white
-                "
-              >
-                Safe & Caring Environment
-              </h3>
-
-              <p
-                className="
-                  mt-4
-                  leading-8
-                  text-slate-300
-                "
-              >
-                Every child receives personal
-                attention in a warm and
-                supportive educational
-                atmosphere.
-              </p>
-            </div>
+                    {/* DESCRIPTION */}
+                    <p
+                      className="
+                        mt-4
+                        leading-8
+                        text-slate-300
+                      "
+                    >
+                      {
+                        card.description
+                      }
+                    </p>
+                  </div>
+                );
+              }
+            )}
           </motion.div>
         </div>
       </div>
@@ -515,8 +471,6 @@ export default function Hero() {
           left-1/2
           z-20
           -translate-x-1/2
-
-          lg:bottom-8
         "
       >
         <div
