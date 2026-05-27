@@ -12,7 +12,6 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-import heroVideo from "../../assets/videos/herovideo.mp4";
 
 export default function Hero() {
   const { scrollYProgress } = useScroll();
@@ -61,8 +60,9 @@ export default function Hero() {
         "
       >
         <source
-          src={heroVideo}
+          src="/videos/heroVideo.mp4"
           type="video/mp4"
+          
         />
       </motion.video>
 
