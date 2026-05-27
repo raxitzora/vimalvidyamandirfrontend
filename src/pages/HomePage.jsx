@@ -2,16 +2,18 @@ import Hero from "../components/home/Hero";
 import Message from "../components/home/Message";
 import Talent from "../components/home/Talent";
 import Navbar from "../components/common/Navbar";
+import Footer from "../components/common/Footer";
 
 export default function Home(){
 
 
     return (
         <>
-          <Navbar/>
+        <Navbar/>
         <Hero />
        <Talent />
        <Message />
+       <Footer />
         
         </>
     )

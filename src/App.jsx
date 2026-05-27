@@ -1,28 +1,27 @@
-import { useState,useEffect } from 'react'
-import Navbar from './components/common/Navbar'
-import './App.css'
-import Home from './pages/Home'
-import Footer from './components/common/Footer';
+import "./App.css";
 
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
-    const [darkMode, setDarkMode] = useState(true);
- useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-   
-
   return (
-    <>
-    <Home />
-      <Footer />
-     
-    </>
-  )
+    <Routes>
+      <Route
+        path="/"
+        element={<HomePage />}
+      />
+
+      <Route
+        path="/about"
+        element={<AboutPage />}
+      />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
